@@ -1,0 +1,164 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:flutter/material.dart';
+import 'package:aj_customer/application/auth/auth_provider.dart';
+import 'package:aj_customer/core/routes/routes.gr.dart';
+import 'package:aj_customer/core/theme/app_colors.dart';
+import 'package:aj_customer/core/theme/custom_text_styles.dart';
+import 'package:aj_customer/core/utils/ui_utils.dart';
+import 'package:aj_customer/presentation/widgets/get_provider_view.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
+
+import '../../application/core/dependency_registrar.dart';
+import '../../core/utils/alert_dialogs.dart';
+import '../../core/utils/utils.dart';
+import '../../gen/assets.gen.dart';
+import '../widgets/button_progress.dart';
+
+@RoutePage()
+class LoginScreen extends GetProviderView<AuthProvider> {
+  const LoginScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final authProvider = notifier(context);
+    final authListener = listener(context);
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppColors.kWhite,
+        automaticallyImplyLeading: false,
+      ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: defaultScreenPadding),
+        child: SingleChildScrollView(
+          child: Form(
+            key: authProvider.loginFormKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Assets.images.a2.image(),
+                Text(
+                  "Login",
+                  style: context.customTextTheme.text20W600,
+                ),
+                Text(
+                  "Enter your credentials to login in",
+                  style: context.customTextTheme.text16W400,
+                ),
+                verticalSpaceLarge,
+                TextFormField(
+                  controller: authProvider.loginUserNameController,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.emailAddress,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: Utils.validateEmail,
+                  decoration: const InputDecoration(
+                    hintText: "Email Address",
+                    prefixIcon: Icon(
+                      FluentIcons.mail_24_regular,
+                      color: AppColors.kGray3,
+                    ),
+                    hintStyle: TextStyle(
+                      fontSize: 14,
+                      color: AppColors.kGray3,
+                    ),
+                  ),
+                ),
+                verticalSpaceRegular,
+                TextFormField(
+                  controller: authProvider.loginUserPasswordController,
+                  textInputAction: TextInputAction.done,
+                  keyboardType: TextInputType.visiblePassword,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  obscureText: authListener.loginPasswordHide,
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.password(),
+                  ]),
+                  decoration: InputDecoration(
+                    hintText: "Password",
+                    prefixIcon: const Icon(
+                      FluentIcons.lock_closed_24_regular,
+                      color: AppColors.kGray3,
+                    ),
+                    suffixIcon: InkWell(
+                        customBorder: const CircleBorder(),
+                        onTap: authProvider.toggleLoginPassword,
+                        child: Icon(
+                          authListener.loginPasswordHide
+                              ? FluentIcons.eye_24_regular
+                              : FluentIcons.eye_off_24_regular,
+                          color: AppColors.kGray3,
+                        )),
+                    hintStyle: const TextStyle(
+                      fontSize: 14,
+                      color: AppColors.kGray3,
+                    ),
+                  ),
+                ),
+                verticalSpaceMedium,
+                InkWell(
+                  onTap: () {
+                    context.router.push(const ForgotPasswordScreenRoute());
+                  },
+                  child: Text(
+                    "Forgot Password?",
+                    style: context.customTextTheme.text14W600,
+                  ),
+                ),
+                verticalSpaceMedium,
+                FilledButton(
+                  onPressed: () {
+                    final validated = authProvider.validateLoginForm();
+                    if (validated) {
+                      authProvider.loginUser().then((logged) {
+                        if (logged) {
+                          AlertDialogs.showSuccess("Login successfully!");
+                          DependencyRegistrar.initializeAllProviders(context);
+                          Future.delayed(const Duration(seconds: 1), () {
+                            context.router.replaceAll([
+                              HomeScreenRoute(),
+                            ]);
+                          });
+                        }
+                      });
+                    }
+                  },
+                  style: FilledButton.styleFrom(
+                    fixedSize: Size(context.screenWidth, 50),
+                  ),
+                  child: !authListener.loginLoading
+                      ? Text(
+                          "Login",
+                          style: context.customTextTheme.text16W400,
+                        )
+                      : showButtonProgress(),
+                ),
+                verticalSpaceLarge,
+                InkWell(
+                  onTap: () {
+                    context.router.push(const RegisterScreenRoute());
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Don’t have an account? ",
+                        style: context.customTextTheme.text14W500
+                            .copyWith(color: AppColors.kGray3),
+                      ),
+                      Text(
+                        "Register",
+                        style: context.customTextTheme.text14W600,
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

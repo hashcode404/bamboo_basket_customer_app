@@ -1,0 +1,323 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:flutter/material.dart';
+import 'package:aj_customer/application/cart/cart_provider.dart';
+import 'package:aj_customer/application/core/api_response.dart';
+import 'package:aj_customer/application/products/products_provider.dart';
+import 'package:aj_customer/core/theme/app_colors.dart';
+import 'package:aj_customer/core/theme/custom_text_styles.dart';
+import 'package:aj_customer/core/utils/ui_utils.dart';
+import 'package:aj_customer/presentation/widgets/custom_back_button.dart';
+import 'package:aj_customer/presentation/widgets/custom_search_delegate.dart';
+import 'package:aj_customer/presentation/widgets/dish_detail_bottom_sheet.dart';
+import 'package:aj_customer/presentation/widgets/search_bar_widget.dart';
+import 'package:aj_customer/presentation/widgets/shimmer_product_details_tile.dart';
+import 'package:provider/provider.dart';
+
+import '../../../domain/store/models/product_details_model.dart';
+import '../../../gen/assets.gen.dart';
+import '../../widgets/product_details_tile.dart';
+
+@RoutePage()
+class OrderOnlineHomeScreen extends StatefulWidget {
+  const OrderOnlineHomeScreen({super.key});
+
+  @override
+  State<OrderOnlineHomeScreen> createState() => _OrderOnlineHomeScreenState();
+}
+
+class _OrderOnlineHomeScreenState extends State<OrderOnlineHomeScreen>
+    with SingleTickerProviderStateMixin {
+  TabController? _tabController;
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        final productProvider = context.read<ProductsProvider>();
+        final categories = productProvider.categories;
+        if (productProvider.productsList.isNotEmpty) {
+          _setupTabController(categories);
+        } else {
+          productProvider.getAllCategories().then((_) {
+            _setupTabController(productProvider.categories);
+          });
+        }
+      }
+    });
+    super.initState();
+  }
+
+  void _setupTabController(List categories) {
+    final totalCategories = categories.length;
+    setState(() {
+      _tabController = TabController(length: totalCategories, vsync: this);
+    });
+    _tabController?.addListener(() {
+      final categoryId = categories.elementAt(_tabController!.index).cID;
+      if (categoryId != null) {
+        context.read<ProductsProvider>().getAllProducts(categoryId);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _tabController?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final productProvider = context.read<ProductsProvider>();
+    final productListener = context.watch<ProductsProvider>();
+    final cartProvider = context.read<CartProvider>();
+    final cartListener = context.watch<CartProvider>();
+
+    return PopScope(
+      onPopInvokedWithResult: (_, __) {
+        Future.delayed(const Duration(milliseconds: 300), () {
+          productProvider.resetValues();
+        });
+      },
+      child: Scaffold(
+        backgroundColor: AppColors.kLightWhite2,
+        appBar: AppBar(
+          leading: const CustomBackButton(),
+          leadingWidth: 70,
+          title: const SearchBarWidget(),
+          centerTitle: true,
+          backgroundColor: AppColors.kLightWhite2,
+          actions: [
+            const SizedBox(width: 5.0),
+            IconButton.filled(
+              onPressed: () {},
+              color: AppColors.kBlack3,
+              style: IconButton.styleFrom(
+                backgroundColor: AppColors.kLightGray2,
+              ),
+              icon: Badge.count(
+                count: 0,
+                backgroundColor: AppColors.kRed2,
+                child: const Icon(
+                  FluentIcons.alert_24_filled,
+                  size: 24,
+                ),
+              ),
+            ),
+            horizontalSpaceSmall,
+          ],
+        ),
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: defaultScreenPadding),
+          child: productListener.categoryLoadingAndProductEmpty
+              ? ListView(
+                  children: const <Widget>[
+                    verticalSpaceRegular,
+                    BuildProductsCategoryShimmer(),
+                    verticalSpaceRegular,
+                    ShimmerProductDetailsTile(),
+                  ],
+                )
+              : Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 70,
+                      child: productListener.categoriesListAPIResponse.when(
+                          initial: () {
+                        return const SizedBox.shrink();
+                      }, loading: () {
+                        return const BuildProductsCategoryShimmer();
+                      }, completed: (categories) {
+                        if (_tabController == null) {
+                          return const SizedBox.shrink();
+                        }
+
+                        return TabBar(
+                            controller: _tabController,
+                            isScrollable: true,
+                            tabAlignment: TabAlignment.center,
+                            dividerColor: Colors.transparent,
+                            tabs: categories.map((category) {
+                              return Tab(
+                                child:
+                                    Text((category.name ?? "").toUpperCase()),
+                              );
+                            }).toList());
+                      }, error: (message, error) {
+                        return Text(message ?? "");
+                      }),
+                    ),
+                    Expanded(
+                      child: productListener.productsListAPIResponse.when(
+                          initial: () {
+                        return const SizedBox.shrink();
+                      }, loading: () {
+                        return const ShimmerProductDetailsTile();
+                      }, completed: (products) {
+                        final categories = productProvider.categories;
+
+                        final filteredProduct = products
+                            .where((product) =>
+                                productProvider.selectedFoodType == FoodType.veg
+                                    ? product.type == "veg"
+                                    : product.type != "veg")
+                            .toList();
+
+                        if (_tabController == null) {
+                          return const ShimmerProductDetailsTile();
+                        }
+
+                        return Column(
+                          children: <Widget>[
+                            verticalSpaceSmall,
+                            _buildVegAndNonVegBtn(),
+                            Expanded(
+                              child: TabBarView(
+                                  controller: _tabController,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  children: categories.map((category) {
+                                    return ListView.builder(
+                                      itemCount: filteredProduct.length,
+                                      itemBuilder: (context, index) {
+                                        final product =
+                                            filteredProduct.elementAt(index);
+                                        return ProductDetailsTile(
+                                          product,
+                                          onPressed: () =>
+                                              showItemDetailsBottomSheet(
+                                                  product),
+                                          onPressAddBtn: () {
+                                            if (product.pID == null) return;
+                                            if (product.variations.isNotEmpty) {
+                                              cartProvider.onChangeVariation(
+                                                product.variations.first,
+                                              );
+                                            }
+                                            cartProvider.updateSelectedItemId(
+                                                product.pID!);
+                                            showAddItemBottomSheet(product);
+                                          },
+                                        );
+                                      },
+                                    );
+                                  }).toList()),
+                            ),
+                          ],
+                        );
+                      }, error: (message, error) {
+                        return Text(message ?? "");
+                      }),
+                    ),
+                  ],
+                ),
+        ),
+      ),
+    );
+  }
+
+  void showItemDetailsBottomSheet(ProductDataModel product) {
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+        builder: (context) {
+          return DishDetailBottomSheet(
+            product: product,
+            onRequestOrderDish: () {
+              if (product.pID == null) return;
+
+              if (product.variations.isNotEmpty) {
+                context.read<CartProvider>().onChangeVariation(
+                      product.variations.first,
+                    );
+              }
+
+              context.read<CartProvider>().updateSelectedItemId(product.pID!);
+
+              showAddItemBottomSheet(product);
+            },
+          );
+        });
+  }
+
+  void showAddItemBottomSheet(ProductDataModel product) {
+    final sheetFuture = showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        )),
+        builder: (context) {
+          return AddDishBottomSheet(
+            product: product,
+          );
+        });
+
+    sheetFuture.whenComplete(() {
+      context.read<CartProvider>().resetValues();
+    });
+  }
+
+  Widget _buildVegAndNonVegBtn() {
+    return Builder(builder: (context) {
+      final productProvider = context.read<ProductsProvider>();
+      final productListener = context.watch<ProductsProvider>();
+      return Row(
+        children: [
+          OutlinedButton.icon(
+            onPressed: () {
+              productProvider.onChangeFoodType(FoodType.veg);
+            },
+            label: const Text("Veg"),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: productListener.selectedFoodType != FoodType.veg
+                  ? AppColors.kGray5
+                  : AppColors.kTealGreen,
+              side: BorderSide(
+                  color: productListener.selectedFoodType != FoodType.veg
+                      ? AppColors.kGray5
+                      : AppColors.kTealGreen),
+            ),
+            icon: Assets.icons.veg.svg(
+              color: productListener.selectedFoodType != FoodType.veg
+                  ? AppColors.kGray5
+                  : null,
+            ),
+          ),
+          horizontalSpaceSmall,
+          OutlinedButton.icon(
+            onPressed: () {
+              productProvider.onChangeFoodType(FoodType.nonVeg);
+            },
+            label: const Text("Non Veg"),
+            style: OutlinedButton.styleFrom(
+              foregroundColor:
+                  productListener.selectedFoodType != FoodType.nonVeg
+                      ? AppColors.kGray5
+                      : AppColors.kDarkRed,
+              side: BorderSide(
+                  color: productListener.selectedFoodType != FoodType.nonVeg
+                      ? AppColors.kGray5
+                      : AppColors.kDarkRed),
+            ),
+            icon: Assets.icons.nonVeg.svg(
+              color: productListener.selectedFoodType != FoodType.nonVeg
+                  ? AppColors.kGray5
+                  : null,
+            ),
+          )
+        ],
+      );
+    });
+  }
+}

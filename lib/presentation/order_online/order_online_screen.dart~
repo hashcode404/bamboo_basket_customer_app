@@ -1,0 +1,133 @@
+import 'package:auto_route/annotations.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:flutter/material.dart';
+import 'package:aj_customer/application/order/order_provider.dart';
+import 'package:aj_customer/core/theme/custom_text_styles.dart';
+import 'package:aj_customer/presentation/order_online/cart/cart_screen.dart';
+import 'package:aj_customer/presentation/order_online/home/order_online_home_screen.dart';
+import 'package:aj_customer/presentation/order_online/orders/orders_history_screens.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+
+import '../../application/cart/cart_provider.dart';
+import '../../core/theme/app_colors.dart';
+
+@RoutePage()
+class OrderOnlineScreen extends StatefulWidget {
+  const OrderOnlineScreen({super.key});
+
+  @override
+  State<OrderOnlineScreen> createState() => _OrderOnlineScreenState();
+}
+
+class _OrderOnlineScreenState extends State<OrderOnlineScreen> {
+  final pages = <Widget>[
+    const OrderOnlineHomeScreen(),
+    const CartScreen(),
+    const OrdersHistoryScreens(),
+    const Scaffold(body: Center(child: Text("Profile"))),
+  ];
+
+  final ValueNotifier<int> _currentPageNotifier = ValueNotifier(0);
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<OrderProvider>().fetchAllOrders();
+    });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder(
+      valueListenable: _currentPageNotifier,
+      builder: (context, currentPage, _) {
+        final titleTextStyle = GoogleFonts.quicksand(
+          textStyle: context.customTextTheme.text16W600.copyWith(
+            fontWeight: FontWeight.w700,
+          ),
+        );
+        return Scaffold(
+          body: pages[currentPage],
+          bottomNavigationBar: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 0.0),
+
+            child: SalomonBottomBar(
+              currentIndex: currentPage,
+              backgroundColor:
+                  currentPage == 1 ? AppColors.kBlack2 : AppColors.kWhite,
+              unselectedItemColor:
+                  currentPage == 1 ? AppColors.kWhite : AppColors.kBlack2,
+              selectedItemColor:
+                  currentPage == 1 ? AppColors.kWhite : AppColors.kBlack3,
+              onTap: (index) {
+                return _currentPageNotifier.value = index;
+              },
+              items: <SalomonBottomBarItem>[
+                SalomonBottomBarItem(
+                  icon: const Icon(FluentIcons.home_24_filled, size: 24),
+                  title: Text(
+                    "Home",
+                    style: titleTextStyle.copyWith(
+                      color: currentPage == 1
+                          ? AppColors.kWhite
+                          : AppColors.kBlack2,
+                    ),
+                  ),
+                ),
+                SalomonBottomBarItem(
+                  icon: Badge.count(
+                    count: context.watch<CartProvider>().totalCartItems,
+                    backgroundColor: AppColors.kRed2,
+                    child: Icon(
+                      FluentIcons.cart_24_filled,
+                      size: currentPage == 2 ? 28 : 27,
+                    ),
+                  ),
+                  title: Text(
+                    "Cart",
+                    style: titleTextStyle.copyWith(
+                      color: currentPage == 1
+                          ? AppColors.kWhite
+                          : AppColors.kBlack2,
+                    ),
+                  ),
+                ),
+                SalomonBottomBarItem(
+                  icon: Icon(
+                    FluentIcons.receipt_24_filled,
+                    size: currentPage == 1 ? 27 : 26,
+                  ),
+                  title: Text(
+                    "History",
+                    style: titleTextStyle.copyWith(
+                      color: currentPage == 1
+                          ? AppColors.kWhite
+                          : AppColors.kBlack2,
+                    ),
+                  ),
+                ),
+                SalomonBottomBarItem(
+                  icon: Icon(
+                    FluentIcons.person_24_filled,
+                    size: currentPage == 1 ? 27 : 26,
+                  ),
+                  title: Text(
+                    "Profile",
+                    style: titleTextStyle.copyWith(
+                      color: currentPage == 1
+                          ? AppColors.kWhite
+                          : AppColors.kBlack2,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}

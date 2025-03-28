@@ -1,0 +1,392 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:dart_extensions/dart_extensions.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart'; // Import flutter_svg to handle SVG
+import 'package:aj_customer/application/user/user_provider.dart';
+import 'package:aj_customer/core/routes/routes.gr.dart';
+import 'package:aj_customer/core/theme/app_colors.dart';
+import 'package:aj_customer/core/theme/custom_text_styles.dart';
+import 'package:aj_customer/core/utils/ui_utils.dart';
+import 'package:aj_customer/presentation/widgets/bottom_sheet_drag_handler.dart';
+import 'package:aj_customer/presentation/widgets/get_provider_view.dart';
+import 'package:random_avatar/random_avatar.dart';
+
+@RoutePage()
+class ProfileScreen extends GetProviderView<UserProvider> {
+  const ProfileScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final userProvider = notifier(context);
+    final userListner = listener(context);
+    final String userId = userListner.userData?.user.userID ?? '';
+
+    return Scaffold(
+      backgroundColor: AppColors.kLightWhite,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildAppBar(userId, context),
+                verticalSpaceMedium,
+                _buildBioWidget(userListner, context),
+                verticalSpaceSmall,
+                _buildConfigShopDetails(context),
+                verticalSpaceSmall,
+                Text(
+                  'My Orders',
+                  style: context.customTextTheme.text20W600,
+                ),
+                verticalSpaceSmall,
+                _buildMyOrderButtons(context),
+                verticalSpaceMedium,
+                Text(
+                  'Settings',
+                  style: context.customTextTheme.text16W600,
+                ),
+                verticalSpaceSmall,
+                _buildSettingOptions(context)
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSettingOptions(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      decoration: BoxDecoration(
+          color: AppColors.kWhite,
+          borderRadius: BorderRadius.circular(10.0),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.kGray2.withOpacity(0.5),
+              blurRadius: 6.0,
+              offset: const Offset(0, 3),
+            ),
+          ]),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ListTile(
+            onTap: () => context.router.push(const ForgotPasswordScreenRoute()),
+            leading: const Icon(
+              FluentIcons.lock_closed_12_regular,
+              color: AppColors.kGray,
+            ),
+            title: Text(
+              'Change Password',
+              style: context.customTextTheme.text14W600,
+            ),
+          ),
+          ListTile(
+            onTap: () {},
+            leading: const Icon(
+              FluentIcons.alert_24_regular,
+              color: AppColors.kGray,
+            ),
+            title: Text(
+              'Notifications',
+              style: context.customTextTheme.text14W600,
+            ),
+          ),
+          ListTile(
+            onTap: () {
+              showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
+                  ),
+                  builder: (context) {
+                    return Container(
+                        height: context.heightPx * 0.33,
+                        width: double.infinity,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 10),
+                        decoration: const BoxDecoration(
+                          color: AppColors.kWhite,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20),
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const BottomSheetDragHandler(),
+                            verticalSpaceMedium,
+                            SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: Image.asset('assets/images/logout_icon.png')),  
+                           verticalSpaceMedium,
+                            Text(
+                              'Confirm Logout',
+                              style:
+                                  context.customTextTheme.text20W600.copyWith(
+                                color: AppColors.kBlack,
+                              ),
+                            ),
+                            verticalSpaceSmall,
+                            Text('Are you sure you want to logout?',style: context.customTextTheme.text14W700,),
+                            verticalSpaceMedium,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Flexible(
+                                  child: FilledButton(
+                                    style: FilledButton.styleFrom(
+                                      backgroundColor: AppColors.kWhite,
+                                    ),
+                                    
+                                    
+                                    onPressed: (){
+                                      Navigator.pop(context);
+                                    }, child: Text('Not Now',style: context.customTextTheme.text14W600.copyWith(
+                                      color: AppColors.kBlack
+                                    ),),),
+                                ),
+                                horizontalSpaceSmall,
+                                Flexible(
+                                  child: FilledButton(
+                                    onPressed: (){
+                                      context.router.replace(const LoginScreenRoute());
+                                    }, child: Text('Logout',style: context.customTextTheme.text14W600,),),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ));
+                  });
+            },
+            leading: const Icon(
+              Icons.logout,
+              color: AppColors.kGray,
+            ),
+            title: Text(
+              'Logout',
+              style: context.customTextTheme.text14W600,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAlertBox() {
+    return AlertDialog(
+      title: const Text('Logout this app'),
+      actions: <Widget>[
+        OutlinedButton(onPressed: () {}, child: Text('Cancel')),
+        ElevatedButton(
+          style: ButtonStyle(
+            elevation: WidgetStatePropertyAll(0),
+          ),
+          onPressed: () {},
+          child: Text('Logout'),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildMyOrderButtons(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) {
+                  if (states.contains(WidgetState.pressed)) {
+                    return AppColors.kBlack3;
+                  }
+                  return AppColors.kWhite;
+                },
+              ),
+              foregroundColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) {
+                  if (states.contains(WidgetState.pressed)) {
+                    return AppColors.kWhite;
+                  }
+                  return AppColors.kBlack3;
+                },
+              ),
+              side: WidgetStateProperty.all(
+                const BorderSide(color: AppColors.kGray),
+              ),
+              padding: WidgetStateProperty.all(
+                const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              ),
+              elevation: WidgetStateProperty.all(0),
+            ),
+            onPressed: () {
+              context.router.push(const OrdersHistoryScreensRoute());
+            },
+            child: Text(
+              'Order History',
+              style: context.customTextTheme.text14W700,
+            ),
+          ),
+        ),
+        horizontalSpaceMedium,
+        Expanded(
+          child: ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) {
+                  if (states.contains(WidgetState.pressed)) {
+                    return AppColors.kWhite;
+                  }
+                  return AppColors.kBlack3;
+                },
+              ),
+              foregroundColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) {
+                  if (states.contains(WidgetState.pressed)) {
+                    return AppColors.kBlack3;
+                  }
+                  return AppColors.kWhite;
+                },
+              ),
+              side: WidgetStateProperty.all(
+                const BorderSide(color: AppColors.kGray),
+              ),
+              padding: WidgetStateProperty.all(
+                const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              ),
+              elevation: WidgetStateProperty.all(0),
+            ),
+            onPressed: () {
+              context.router.push(const OrderOnlineScreenRoute());
+            },
+            child: Text(
+              'Order Online',
+              style: context.customTextTheme.text14W700,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildConfigShopDetails(BuildContext context) {
+    return Row(
+      children: [
+        SizedBox(
+            width: context.screenWidth * 0.3,
+            height: context.screenWidth * 0.3,
+            child: Image.asset('assets/images/Profile_circle.png')),
+        horizontalSpaceSmall,
+        Expanded(
+          child: Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(
+                  text: 'Welcome to Pakwaan',
+                  style: context.customTextTheme.text16W400
+                      .copyWith(fontWeight: FontWeight.bold),
+                ),
+                TextSpan(
+                  text:
+                      ', Chelmsford Finest Indian Restaurant in Chelmsford, Essex. We serve passion & tradition',
+                  style: context.customTextTheme.text14W400,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildBioWidget(UserProvider userListener, BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Hello, ${userListener.userFullName} !',
+          style: context.customTextTheme.text24W600,
+        ),
+        verticalSpaceSmall,
+        Text(
+          (userListener.userData?.user.userEmail?.isNotEmpty ?? false)
+              ? userListener.userData!.user.userEmail!
+              : 'No email found',
+          style: context.customTextTheme.text16W400,
+        ),
+        verticalSpaceTiny,
+        Text(
+          (userListener.userData?.user.userMobile?.isNotEmpty ?? false)
+              ? userListener.userData!.user.userMobile!
+              : 'No phone number',
+          style: context.customTextTheme.text14W400,
+        ),
+      ],
+    );
+  }
+
+  Row _buildAppBar(String userId, BuildContext context) {
+    String avatarSvg = _getAvatarForUser(userId);
+    return Row(children: [
+      Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.1),
+              blurRadius: 4.0,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: CircleAvatar(
+          radius: 30,
+          backgroundColor: Colors.white,
+          child: SvgPicture.string(
+            avatarSvg,
+            width: 60,
+            height: 60,
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+      horizontalSpaceMedium,
+      Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 8,
+        ),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: AppColors.kBlack3,
+            border: Border.all(color: AppColors.kGray2)),
+        child: Text(
+          'Profile Info',
+          style: context.customTextTheme.text14W700
+              .copyWith(color: AppColors.kWhite),
+        ),
+      ),
+    ]);
+  }
+
+  String _getAvatarForUser(String userId) {
+    // Logic to determine avatar based on user ID
+    // For simplicity, we return the same svgString for now
+    // You can replace this with actual logic to fetch or generate avatars
+    return RandomAvatarString(
+      userId,
+      trBackground: true,
+    );
+  }
+}
