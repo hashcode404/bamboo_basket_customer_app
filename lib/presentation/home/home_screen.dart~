@@ -3,12 +3,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/application/auth/auth_provider.dart';
-import 'package:aj_customer/core/routes/routes.gr.dart';
-import 'package:aj_customer/core/theme/app_colors.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
-import 'package:aj_customer/core/utils/contact_utils.dart';
-import 'package:aj_customer/core/utils/ui_utils.dart';
+import 'package:bamboo_basket_customer_app/application/auth/auth_provider.dart';
+import 'package:bamboo_basket_customer_app/core/routes/routes.gr.dart';
+import 'package:bamboo_basket_customer_app/core/theme/app_colors.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/core/utils/contact_utils.dart';
+import 'package:bamboo_basket_customer_app/core/utils/ui_utils.dart';
 import 'package:provider/provider.dart';
 
 import '../../gen/assets.gen.dart';

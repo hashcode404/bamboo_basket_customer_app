@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:aj_customer/application/home/home_provider.dart';
+import 'package:bamboo_basket_customer_app/application/home/home_provider.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
@@ -10,12 +10,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:aj_customer/application/auth/auth_provider.dart';
-import 'package:aj_customer/core/routes/routes.gr.dart';
-import 'package:aj_customer/core/theme/app_colors.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
-import 'package:aj_customer/core/utils/ui_utils.dart';
-import 'package:aj_customer/presentation/widgets/get_provider_view.dart';
+import 'package:bamboo_basket_customer_app/application/auth/auth_provider.dart';
+import 'package:bamboo_basket_customer_app/core/routes/routes.gr.dart';
+import 'package:bamboo_basket_customer_app/core/theme/app_colors.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/core/utils/ui_utils.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/get_provider_view.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
@@ -86,7 +86,8 @@ class _LoginScreenState extends State<LoginScreen> {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-            image: Assets.images.bg02.image().image, fit: BoxFit.cover),
+            image: Assets.images.authBackground.image().image,
+            fit: BoxFit.cover),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -151,11 +152,14 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(width: 170, child: Assets.images.ajLogo.image()),
+                verticalSpaceLarge,
+                SizedBox(
+                    width: 180,
+                    child: Assets.images.bambooBasketLoginLogo.image()),
                 verticalSpaceSmall,
                 Text(
                   "Welcome Back !",
-                  style: context.customTextTheme.text24W600
+                  style: context.customTextTheme.text20W600
                       .copyWith(color: AppColors.kBlack),
                 ),
                 verticalSpaceSmall,
@@ -163,7 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   "Enter your email and password to log in",
                   style: context.customTextTheme.text12W400,
                 ),
-                verticalSpaceMedium,
+                verticalSpaceSmall,
                 CustomTextField(
                   controller: authProvider.loginUserNameController,
                   hintText: "Email",
@@ -284,7 +288,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       TextSpan(
                         text: "Sign Up",
                         style: context.customTextTheme.text14W700
-                            .copyWith(color: AppColors.kBlack),
+                            .copyWith(color: AppColors.kPrimaryColor),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             authProvider
@@ -352,9 +356,12 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
+                verticalSpaceLarge,
                 authListener.currentRegForm == 3
                     ? const SizedBox.shrink()
-                    : SizedBox(width: 170, child: Assets.images.ajLogo.image()),
+                    : SizedBox(
+                        width: 170,
+                        child: Assets.images.bambooBasketLoginLogo.image()),
                 authListener.currentRegForm == 3
                     ? const SizedBox.shrink()
                     : verticalSpaceMedium,
@@ -370,7 +377,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: context.customTextTheme.text24W600
                             .copyWith(color: AppColors.kBlack),
                       ),
-                verticalSpaceSmall,
+                verticalSpaceTiny,
                 authListener.currentRegForm == 3
                     ? const SizedBox.shrink()
                     : Text(
@@ -551,7 +558,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           text:
                               authListener.isRegisterMode ? "Sign Up" : "Login",
                           style: context.customTextTheme.text14W700
-                              .copyWith(color: AppColors.kBlack),
+                              .copyWith(color: AppColors.kPrimaryColor),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
                               authProvider.updateCurrentRegForm(0);
@@ -726,7 +733,9 @@ class _LoginScreenState extends State<LoginScreen> {
               // verticalSpaceSmall,
               authListener.currentForgotForm == 2
                   ? const SizedBox.shrink()
-                  : SizedBox(width: 150, child: Assets.images.ajLogo.image()),
+                  : SizedBox(
+                      width: 150,
+                      child: Assets.images.bambooBasketTextLogo.image()),
               verticalSpaceMedium,
 
               authListener.currentForgotForm == 0

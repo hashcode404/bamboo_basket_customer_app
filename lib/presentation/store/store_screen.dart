@@ -1,13 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/application/shop/shop_provider.dart';
-import 'package:aj_customer/application/user/user_provider.dart';
-import 'package:aj_customer/core/constants/app_identifiers.dart';
-import 'package:aj_customer/core/theme/app_colors.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
-import 'package:aj_customer/core/utils/ui_utils.dart';
-import 'package:aj_customer/presentation/widgets/custom_back_button.dart';
-import 'package:aj_customer/presentation/widgets/get_provider_view.dart';
+import 'package:bamboo_basket_customer_app/application/shop/shop_provider.dart';
+import 'package:bamboo_basket_customer_app/application/user/user_provider.dart';
+import 'package:bamboo_basket_customer_app/core/constants/app_identifiers.dart';
+import 'package:bamboo_basket_customer_app/core/theme/app_colors.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/core/utils/ui_utils.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/custom_back_button.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/get_provider_view.dart';
 import 'package:intl/intl.dart';
 
 import '../../domain/store/models/store_timing_data_model.dart';
@@ -82,6 +82,7 @@ class StoreScreen extends GetProviderView<ShopProvider> {
                                   )
                                   .toList(),
                             )
+                            // Text(AppIdentifiers.kApplicationName)
                           ],
                         ),
                         Icon(
@@ -144,7 +145,8 @@ class StoreScreen extends GetProviderView<ShopProvider> {
     );
   }
 
-  Widget _buildTimeWidget(String title, List<ShopTimingDetails> details, BuildContext context) {
+  Widget _buildTimeWidget(
+      String title, List<ShopTimingDetails> details, BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.all(10),
@@ -164,7 +166,8 @@ class StoreScreen extends GetProviderView<ShopProvider> {
               child: Center(
                 child: Text(
                   title.substring(0, 3).toUpperCase(),
-                  style: context.customTextTheme.text14W700.copyWith(color: AppColors.kPrimaryColor),
+                  style: context.customTextTheme.text14W700
+                      .copyWith(color: AppColors.kPrimaryColor),
                 ),
               ),
             ),

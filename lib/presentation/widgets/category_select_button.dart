@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
-import 'package:aj_customer/core/utils/ui_utils.dart';
-import 'package:aj_customer/domain/store/models/product_category_model.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/core/utils/ui_utils.dart';
+import 'package:bamboo_basket_customer_app/domain/store/models/product_category_model.dart';
 
 import '../../core/theme/app_colors.dart';
 
@@ -52,7 +52,9 @@ class CategorySelectButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(10.0),
       boxShadow: [
         BoxShadow(
-          color: selected ? const Color.fromRGBO(74, 74, 75, 1) : const Color.fromRGBO(200, 200, 200, 0.25),
+          color: selected
+              ? const Color.fromRGBO(74, 74, 75, 1)
+              : const Color.fromRGBO(200, 200, 200, 0.25),
           offset: Offset(0, selected ? 2 : 4),
           blurRadius: selected ? 4 : 10,
         ),
@@ -84,7 +86,9 @@ class CategorySelectButton extends StatelessWidget {
       child: Center(
         child: FittedBox(
           child: Icon(
-            !selected ? Icons.arrow_forward_ios_rounded : Icons.keyboard_arrow_down_rounded,
+            !selected
+                ? Icons.arrow_forward_ios_rounded
+                : Icons.keyboard_arrow_down_rounded,
             color: !selected ? AppColors.kOffWhite4 : AppColors.kBlack2,
           ),
         ),

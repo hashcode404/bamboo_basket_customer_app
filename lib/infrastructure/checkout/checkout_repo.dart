@@ -2,16 +2,16 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:aj_customer/core/constants/app_identifiers.dart';
-import 'package:aj_customer/core/utils/date_utils.dart';
-import 'package:aj_customer/domain/checkout/models/calculated_delivery_charge_details_model.dart';
+import 'package:bamboo_basket_customer_app/core/constants/app_identifiers.dart';
+import 'package:bamboo_basket_customer_app/core/utils/date_utils.dart';
+import 'package:bamboo_basket_customer_app/domain/checkout/models/calculated_delivery_charge_details_model.dart';
 
-import 'package:aj_customer/domain/checkout/models/checkout_data_model.dart';
-import 'package:aj_customer/domain/checkout/models/payment_intent_details.dart';
-import 'package:aj_customer/infrastructure/core/api_manager/api_manager.dart';
-import 'package:aj_customer/infrastructure/core/end_points/end_points.dart';
+import 'package:bamboo_basket_customer_app/domain/checkout/models/checkout_data_model.dart';
+import 'package:bamboo_basket_customer_app/domain/checkout/models/payment_intent_details.dart';
+import 'package:bamboo_basket_customer_app/infrastructure/core/api_manager/api_manager.dart';
+import 'package:bamboo_basket_customer_app/infrastructure/core/end_points/end_points.dart';
 
-import 'package:aj_customer/infrastructure/core/failures/app_exceptions.dart';
+import 'package:bamboo_basket_customer_app/infrastructure/core/failures/app_exceptions.dart';
 
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
@@ -22,7 +22,8 @@ import '../../domain/checkout/models/calculate_take_away_details.dart';
 @LazySingleton(as: ICheckoutRepo)
 class CheckoutRepo implements ICheckoutRepo {
   @override
-  Future<Either<AppExceptions, CalculatedDeliveryChargeDetailsModel>> calculateDeliveryFee({
+  Future<Either<AppExceptions, CalculatedDeliveryChargeDetailsModel>>
+      calculateDeliveryFee({
     required String shopID,
     required String destinationPostCode,
   }) async {
@@ -39,7 +40,9 @@ class CheckoutRepo implements ICheckoutRepo {
       if (response == null) return Left(InternalServerErrorException());
       return Right(CalculatedDeliveryChargeDetailsModel.fromJson(response));
     } on DioException catch (e) {
-      return Left(e.error is AppExceptions ? e.error as AppExceptions : InternalServerErrorException());
+      return Left(e.error is AppExceptions
+          ? e.error as AppExceptions
+          : InternalServerErrorException());
     } catch (_) {
       return Left(InternalServerErrorException());
     }
@@ -58,21 +61,27 @@ class CheckoutRepo implements ICheckoutRepo {
       if (response == null) return Left(InternalServerErrorException());
       return Right(jsonDecode(response));
     } on DioException catch (e) {
-      return Left(e.error is AppExceptions ? e.error as AppExceptions : InternalServerErrorException());
+      return Left(e.error is AppExceptions
+          ? e.error as AppExceptions
+          : InternalServerErrorException());
     } catch (_) {
       return Left(InternalServerErrorException());
     }
   }
 
   @override
-  Future<Either<AppExceptions, CalculateTakeAwayDetails>> calculateTakeAwayFee(DateTime pickupTime) async {
+  Future<Either<AppExceptions, CalculateTakeAwayDetails>> calculateTakeAwayFee(
+      DateTime pickupTime) async {
     try {
       final response = await APIManager.post(
         api: Endpoints.kTakeawayCalculator,
         additionalHeaders: {
           "x-secretkey": AppIdentifiers.kFPSecretKey,
         },
-        data: {"shopID": AppIdentifiers.kShopId, "pickupTime": DateTimeUtils.format(pickupTime)},
+        data: {
+          "shopID": AppIdentifiers.kShopId,
+          "pickupTime": DateTimeUtils.format(pickupTime)
+        },
         needAuth: true,
       );
       if (response == null) return Left(InternalServerErrorException());
@@ -84,7 +93,9 @@ class CheckoutRepo implements ICheckoutRepo {
         return Left(BadRequestErrorException(message: message));
       }
 
-      return Left(e.error is AppExceptions ? e.error as AppExceptions : InternalServerErrorException());
+      return Left(e.error is AppExceptions
+          ? e.error as AppExceptions
+          : InternalServerErrorException());
     } catch (e) {
       return Left(InternalServerErrorException());
     }
@@ -114,7 +125,9 @@ class CheckoutRepo implements ICheckoutRepo {
         return Option.of(BadRequestErrorException(message: message));
       }
 
-      return Option.of(e.error is AppExceptions ? e.error as AppExceptions : InternalServerErrorException());
+      return Option.of(e.error is AppExceptions
+          ? e.error as AppExceptions
+          : InternalServerErrorException());
     } catch (_) {
       return Option.of(InternalServerErrorException());
     }
@@ -149,7 +162,9 @@ class CheckoutRepo implements ICheckoutRepo {
         return Left(BadRequestErrorException(message: message));
       }
 
-      return Left(e.error is AppExceptions ? e.error as AppExceptions : InternalServerErrorException());
+      return Left(e.error is AppExceptions
+          ? e.error as AppExceptions
+          : InternalServerErrorException());
     } catch (_) {
       return Left(InternalServerErrorException());
     }

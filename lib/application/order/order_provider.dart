@@ -1,7 +1,7 @@
 import 'package:dart_extensions/dart_extensions.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:aj_customer/application/core/base_controller.dart';
-import 'package:aj_customer/domain/user/i_user_repo.dart';
+import 'package:bamboo_basket_customer_app/application/core/base_controller.dart';
+import 'package:bamboo_basket_customer_app/domain/user/i_user_repo.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../domain/user/models/order_history_raw_data_model.dart';
@@ -11,7 +11,8 @@ import '../core/api_response.dart';
 class OrderProvider extends ChangeNotifier with BaseController {
   final IUserRepo userRepo;
 
-  APIResponse<List<OrderDetailsModel>> _ordersResponse = APIResponse<List<OrderDetailsModel>>.initial();
+  APIResponse<List<OrderDetailsModel>> _ordersResponse =
+      APIResponse<List<OrderDetailsModel>>.initial();
 
   APIResponse<List<OrderDetailsModel>> get ordersResponse => _ordersResponse;
 

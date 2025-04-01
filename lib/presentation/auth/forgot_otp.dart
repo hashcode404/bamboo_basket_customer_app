@@ -2,14 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:aj_customer/application/auth/auth_provider.dart';
-import 'package:aj_customer/core/routes/routes.gr.dart';
-import 'package:aj_customer/core/theme/app_colors.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
-import 'package:aj_customer/core/utils/ui_utils.dart';
-import 'package:aj_customer/gen/assets.gen.dart';
-import 'package:aj_customer/presentation/widgets/button_progress.dart';
-import 'package:aj_customer/presentation/widgets/get_provider_view.dart';
+import 'package:bamboo_basket_customer_app/application/auth/auth_provider.dart';
+import 'package:bamboo_basket_customer_app/core/routes/routes.gr.dart';
+import 'package:bamboo_basket_customer_app/core/theme/app_colors.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/core/utils/ui_utils.dart';
+import 'package:bamboo_basket_customer_app/gen/assets.gen.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/button_progress.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/get_provider_view.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 @RoutePage()
@@ -22,7 +22,8 @@ class ForgotOtpScreen extends GetProviderView<AuthProvider> {
     final authListener = listener(context);
     return PopScope(
       canPop: true,
-      onPopInvokedWithResult: (_, __) => authProvider.registerOTPController.clear(),
+      onPopInvokedWithResult: (_, __) =>
+          authProvider.registerOTPController.clear(),
       child: Scaffold(
         appBar: AppBar(elevation: 0),
         body: Padding(
@@ -135,7 +136,9 @@ class ForgotOtpScreen extends GetProviderView<AuthProvider> {
                         customBorder: const CircleBorder(),
                         onTap: authProvider.toggleResetPassword,
                         child: Icon(
-                          authListener.resetPasswordHide ? FluentIcons.eye_24_regular : FluentIcons.eye_off_24_regular,
+                          authListener.resetPasswordHide
+                              ? FluentIcons.eye_24_regular
+                              : FluentIcons.eye_off_24_regular,
                           color: AppColors.kGray3,
                         ),
                       ),
@@ -167,7 +170,9 @@ class ForgotOtpScreen extends GetProviderView<AuthProvider> {
                         customBorder: const CircleBorder(),
                         onTap: authProvider.toggleResetPassword,
                         child: Icon(
-                          authListener.resetPasswordHide ? FluentIcons.eye_24_regular : FluentIcons.eye_off_24_regular,
+                          authListener.resetPasswordHide
+                              ? FluentIcons.eye_24_regular
+                              : FluentIcons.eye_off_24_regular,
                           color: AppColors.kGray3,
                         ),
                       ),
@@ -187,7 +192,8 @@ class ForgotOtpScreen extends GetProviderView<AuthProvider> {
                         children: [
                           Text(
                             "Don't get OTP? ",
-                            style: context.customTextTheme.text12W500.copyWith(color: AppColors.kGray3),
+                            style: context.customTextTheme.text12W500
+                                .copyWith(color: AppColors.kGray3),
                           ),
                           Text(
                             " Resend OTP",
@@ -201,7 +207,8 @@ class ForgotOtpScreen extends GetProviderView<AuthProvider> {
                   FilledButton(
                     onPressed: !authListener.resetLoading
                         ? () async {
-                            final validated = await authProvider.validateResetPasswordOTP();
+                            final validated =
+                                await authProvider.validateResetPasswordOTP();
                             if (validated) {
                               context.router.replaceAll([
                                 const OrderOnlineScreenRoute(),

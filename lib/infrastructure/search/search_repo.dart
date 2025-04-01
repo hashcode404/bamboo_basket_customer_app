@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:aj_customer/core/constants/app_identifiers.dart';
-import 'package:aj_customer/domain/store/models/product_details_model.dart';
-import 'package:aj_customer/infrastructure/core/api_manager/api_manager.dart';
-import 'package:aj_customer/infrastructure/core/end_points/end_points.dart';
+import 'package:bamboo_basket_customer_app/core/constants/app_identifiers.dart';
+import 'package:bamboo_basket_customer_app/domain/store/models/product_details_model.dart';
+import 'package:bamboo_basket_customer_app/infrastructure/core/api_manager/api_manager.dart';
+import 'package:bamboo_basket_customer_app/infrastructure/core/end_points/end_points.dart';
 
-import 'package:aj_customer/infrastructure/core/failures/app_exceptions.dart';
+import 'package:bamboo_basket_customer_app/infrastructure/core/failures/app_exceptions.dart';
 import 'package:dio/dio.dart';
 
 import 'package:fpdart/src/either.dart';

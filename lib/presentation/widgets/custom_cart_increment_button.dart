@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:aj_customer/core/theme/app_colors.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/core/theme/app_colors.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
 
 class CustomCartIncrementButton extends StatelessWidget {
   const CustomCartIncrementButton({super.key});

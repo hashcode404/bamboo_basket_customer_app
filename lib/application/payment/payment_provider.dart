@@ -2,12 +2,12 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:aj_customer/application/core/base_controller.dart';
-import 'package:aj_customer/core/constants/app_identifiers.dart';
-import 'package:aj_customer/core/utils/alert_dialogs.dart';
-import 'package:aj_customer/domain/checkout/i_checkout_repo.dart';
-import 'package:aj_customer/domain/checkout/models/payment_intent_details.dart';
-import 'package:aj_customer/infrastructure/core/failures/app_exceptions.dart';
+import 'package:bamboo_basket_customer_app/application/core/base_controller.dart';
+import 'package:bamboo_basket_customer_app/core/constants/app_identifiers.dart';
+import 'package:bamboo_basket_customer_app/core/utils/alert_dialogs.dart';
+import 'package:bamboo_basket_customer_app/domain/checkout/i_checkout_repo.dart';
+import 'package:bamboo_basket_customer_app/domain/checkout/models/payment_intent_details.dart';
+import 'package:bamboo_basket_customer_app/infrastructure/core/failures/app_exceptions.dart';
 import 'package:injectable/injectable.dart';
 
 @LazySingleton()
@@ -24,7 +24,8 @@ class PaymentProvider extends ChangeNotifier with BaseController {
 
   PaymentIntentDetails? get paymentIntentDetails => _paymentIntentDetails;
 
-  String? get _clientSecret => paymentIntentDetails?.paymentIntent?.client_secret;
+  String? get _clientSecret =>
+      paymentIntentDetails?.paymentIntent?.client_secret;
 
   String? get transactionId => paymentIntentDetails?.paymentIntent?.id;
 
@@ -86,7 +87,8 @@ class PaymentProvider extends ChangeNotifier with BaseController {
               }
 
               if (exception.error.code == FailureCode.Timeout) {
-                AlertDialogs.showError("Internet Connection is seems to be slow.");
+                AlertDialogs.showError(
+                    "Internet Connection is seems to be slow.");
               }
             }, (exception) {
               log((exception as AppExceptions).message, name: "STRIPE-ERROR");

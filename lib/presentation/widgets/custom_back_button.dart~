@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/core/theme/app_colors.dart';
+import 'package:bamboo_basket_customer_app/core/theme/app_colors.dart';
 
 class CustomBackButton extends StatelessWidget {
   const CustomBackButton({super.key});

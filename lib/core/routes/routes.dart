@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:aj_customer/core/routes/routes.gr.dart';
+import 'package:bamboo_basket_customer_app/core/routes/routes.gr.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Route')
 class AppRouter extends RootStackRouter {

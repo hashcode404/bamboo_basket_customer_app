@@ -1,9 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:aj_customer/domain/store/models/product_details_model.dart';
+import 'package:bamboo_basket_customer_app/domain/store/models/product_details_model.dart';
 import 'package:flutter/foundation.dart';
-
 
 class ProductDetailsPagination {
   final List<ProductDataModel> dataList;
@@ -38,7 +37,8 @@ class ProductDetailsPagination {
   String toJson() => json.encode(toMap());
 
   factory ProductDetailsPagination.fromJson(String source) =>
-      ProductDetailsPagination.fromMap(json.decode(source) as Map<String, dynamic>);
+      ProductDetailsPagination.fromMap(
+          json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() => 'ProductDetailsPagination(dataList: $dataList)';
@@ -116,22 +116,29 @@ class ProductDetailsPaginationSettings {
 
   factory ProductDetailsPaginationSettings.fromMap(Map<String, dynamic> map) {
     return ProductDetailsPaginationSettings(
-      totalDishes: map['totalDishes'] != null ? map['totalDishes'] as int : null,
-      dishesPerPage: map['dishesPerPage'] != null ? map['dishesPerPage'] as String : null,
+      totalDishes:
+          map['totalDishes'] != null ? map['totalDishes'] as int : null,
+      dishesPerPage:
+          map['dishesPerPage'] != null ? map['dishesPerPage'] as String : null,
       totalPages: map['totalPages'] != null ? map['totalPages'] as int : null,
-      currentPage: map['currentPage'] != null ? map['currentPage'] as int : null,
+      currentPage:
+          map['currentPage'] != null ? map['currentPage'] as int : null,
       firstPage: map['firstPage'] != null ? map['firstPage'] as int : null,
       nextpage: map['nextpage'] != null ? map['nextpage'] as int : null,
-      previousPage: map['previousPage'] != null ? map['previousPage'] as int : null,
+      previousPage:
+          map['previousPage'] != null ? map['previousPage'] as int : null,
       lastPage: map['lastPage'] != null ? map['lastPage'] as int : null,
-      imagePlaceholder: map['imagePlaceholder'] != null ? map['imagePlaceholder'] as String : null,
+      imagePlaceholder: map['imagePlaceholder'] != null
+          ? map['imagePlaceholder'] as String
+          : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
   factory ProductDetailsPaginationSettings.fromJson(String source) =>
-      ProductDetailsPaginationSettings.fromMap(json.decode(source) as Map<String, dynamic>);
+      ProductDetailsPaginationSettings.fromMap(
+          json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {

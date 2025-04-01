@@ -2,16 +2,16 @@ import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/application/table/table_provider.dart';
-import 'package:aj_customer/core/theme/app_colors.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
-import 'package:aj_customer/core/utils/ui_utils.dart';
-import 'package:aj_customer/domain/table/models/table_reservation_details.dart';
-import 'package:aj_customer/gen/assets.gen.dart';
-import 'package:aj_customer/presentation/home/home_screen.dart';
-import 'package:aj_customer/presentation/widgets/button_progress.dart';
-import 'package:aj_customer/presentation/widgets/custom_back_button.dart';
-import 'package:aj_customer/presentation/widgets/get_provider_view.dart';
+import 'package:bamboo_basket_customer_app/application/table/table_provider.dart';
+import 'package:bamboo_basket_customer_app/core/theme/app_colors.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/core/utils/ui_utils.dart';
+import 'package:bamboo_basket_customer_app/domain/table/models/table_reservation_details.dart';
+import 'package:bamboo_basket_customer_app/gen/assets.gen.dart';
+import 'package:bamboo_basket_customer_app/presentation/home/home_screen.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/button_progress.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/custom_back_button.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/get_provider_view.dart';
 import 'package:intl/intl.dart';
 
 @RoutePage()
@@ -34,7 +34,8 @@ class TableReservationHistoryScreen extends GetProviderView<TableProvider> {
           centerTitle: true,
           title: Text(
             "Table Reservations",
-            style: context.customTextTheme.text20W600.copyWith(color: AppColors.kBlack),
+            style: context.customTextTheme.text20W600
+                .copyWith(color: AppColors.kBlack),
           ),
           bottom: TabBar(
             indicatorColor: AppColors.kBlack,
@@ -77,7 +78,8 @@ class TableReservationHistoryScreen extends GetProviderView<TableProvider> {
           },
         );
       },
-      error: (message, exception) => Center(child: Text(message ?? "An error occurred")),
+      error: (message, exception) =>
+          Center(child: Text(message ?? "An error occurred")),
     );
   }
 
@@ -100,11 +102,13 @@ class TableReservationHistoryScreen extends GetProviderView<TableProvider> {
           },
         );
       },
-      error: (message, exception) => Center(child: Text(message ?? "An error occurred")),
+      error: (message, exception) =>
+          Center(child: Text(message ?? "An error occurred")),
     );
   }
 
-  Widget _buildReservationCard(TableReservationDetails reservation, BuildContext context) {
+  Widget _buildReservationCard(
+      TableReservationDetails reservation, BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
@@ -136,7 +140,8 @@ class TableReservationHistoryScreen extends GetProviderView<TableProvider> {
           verticalSpaceSmall,
           Text(
             'Reservation ID : ${reservation.id}',
-            style: context.customTextTheme.text14W500.copyWith(color: AppColors.kGray),
+            style: context.customTextTheme.text14W500
+                .copyWith(color: AppColors.kGray),
           ),
           verticalSpaceSmall,
           Text(
@@ -148,19 +153,22 @@ class TableReservationHistoryScreen extends GetProviderView<TableProvider> {
           verticalSpaceSmall,
           Text(
             'Phone : ${reservation.phone}',
-            style: context.customTextTheme.text14W500.copyWith(color: AppColors.kGray),
+            style: context.customTextTheme.text14W500
+                .copyWith(color: AppColors.kGray),
           ),
           verticalSpaceSmall,
           Text(
             'Date & Time: ${DateFormat('M/d/yyyy h:mm a').format(reservation.bookingTime!)}',
-            style: context.customTextTheme.text14W500.copyWith(color: AppColors.kGray),
+            style: context.customTextTheme.text14W500
+                .copyWith(color: AppColors.kGray),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildReservationUpcomingCard(TableReservationDetails reservation, BuildContext context) {
+  Widget _buildReservationUpcomingCard(
+      TableReservationDetails reservation, BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
@@ -176,7 +184,8 @@ class TableReservationHistoryScreen extends GetProviderView<TableProvider> {
             children: [
               Text(
                 'Date : ${DateFormat('MM/dd/yyyy').format(reservation.addedTime!)}',
-                style: context.customTextTheme.text12W600.copyWith(color: AppColors.kBlack),
+                style: context.customTextTheme.text12W600
+                    .copyWith(color: AppColors.kBlack),
               ),
               Text(
                 'Time :  ${DateFormat.jm().format(reservation.addedTime!)}',
@@ -216,7 +225,8 @@ class TableReservationHistoryScreen extends GetProviderView<TableProvider> {
                         children: [
                           Text(
                             reservation.name ?? '',
-                            style: context.customTextTheme.text14W600.copyWith(color: AppColors.kBlack3),
+                            style: context.customTextTheme.text14W600
+                                .copyWith(color: AppColors.kBlack3),
                           ),
                           horizontalSpaceLarge,
                           horizontalSpaceLarge,

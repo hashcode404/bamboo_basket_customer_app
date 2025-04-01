@@ -1,16 +1,16 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:aj_customer/application/shop/shop_provider.dart';
+import 'package:bamboo_basket_customer_app/application/shop/shop_provider.dart';
 import 'package:dartx/dartx.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/application/cart/cart_provider.dart';
-import 'package:aj_customer/application/payment/payment_provider.dart';
-import 'package:aj_customer/application/user/user_provider.dart';
-import 'package:aj_customer/core/routes/routes.gr.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
-import 'package:aj_customer/core/utils/ui_utils.dart';
-import 'package:aj_customer/presentation/widgets/custom_back_button.dart';
-import 'package:aj_customer/presentation/widgets/get_provider_view.dart';
+import 'package:bamboo_basket_customer_app/application/cart/cart_provider.dart';
+import 'package:bamboo_basket_customer_app/application/payment/payment_provider.dart';
+import 'package:bamboo_basket_customer_app/application/user/user_provider.dart';
+import 'package:bamboo_basket_customer_app/core/routes/routes.gr.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/core/utils/ui_utils.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/custom_back_button.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/get_provider_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/theme/app_colors.dart';
@@ -56,7 +56,9 @@ class CheckoutScreen extends GetProviderView<CartProvider> {
               verticalSpaceRegular,
               if (cartListener.selectedAddress != null) ...[
                 Text(
-                  cartListener.selectedOrderType == OrderType.takeaway ? "Takeaway Details" : "Delivery Details",
+                  cartListener.selectedOrderType == OrderType.takeaway
+                      ? "Takeaway Details"
+                      : "Delivery Details",
                   style: context.customTextTheme.text18W600,
                 ),
                 verticalSpaceSmall,
@@ -79,7 +81,8 @@ class CheckoutScreen extends GetProviderView<CartProvider> {
                           const Icon(FluentIcons.person_24_regular),
                           horizontalSpaceSmall,
                           Text(
-                            (cartListener.selectedAddress?.userFullname ?? "").capitalize(),
+                            (cartListener.selectedAddress?.userFullname ?? "")
+                                .capitalize(),
                             style: GoogleFonts.quicksand(
                               textStyle: context.customTextTheme.text18W600,
                             ),
@@ -98,20 +101,27 @@ class CheckoutScreen extends GetProviderView<CartProvider> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  cartListener.selectedOrderType == OrderType.takeaway
+                                  cartListener.selectedOrderType ==
+                                          OrderType.takeaway
                                       ? "Billing Address"
                                       : "Billing or Delivery Address",
                                   style: GoogleFonts.quicksand(
-                                    textStyle: context.customTextTheme.text16W400.copyWith(
+                                    textStyle: context
+                                        .customTextTheme.text16W400
+                                        .copyWith(
                                       color: AppColors.kBlack2,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                 ),
                                 Text(
-                                  cartListener.selectedAddress!.userFulladdress.trimLeft().capitalize(),
+                                  cartListener.selectedAddress!.userFulladdress
+                                      .trimLeft()
+                                      .capitalize(),
                                   style: GoogleFonts.quicksand(
-                                    textStyle: context.customTextTheme.text16W600.copyWith(
+                                    textStyle: context
+                                        .customTextTheme.text16W600
+                                        .copyWith(
                                       color: AppColors.kBlack2,
                                     ),
                                   ),
@@ -119,13 +129,15 @@ class CheckoutScreen extends GetProviderView<CartProvider> {
                                 Text(
                                   userListener.userData?.user.userMobile ?? "",
                                   style: GoogleFonts.quicksand(
-                                    textStyle: context.customTextTheme.text16W600,
+                                    textStyle:
+                                        context.customTextTheme.text16W600,
                                   ),
                                 ),
                                 Text(
                                   userListener.userData?.user.userEmail ?? "",
                                   style: GoogleFonts.quicksand(
-                                    textStyle: context.customTextTheme.text16W600,
+                                    textStyle:
+                                        context.customTextTheme.text16W600,
                                   ),
                                 ),
                               ],
@@ -224,7 +236,8 @@ class CheckoutScreen extends GetProviderView<CartProvider> {
                 },
                 child: Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
                   decoration: BoxDecoration(
                     color: AppColors.kWhite,
                     borderRadius: BorderRadius.circular(8.0),
@@ -233,7 +246,8 @@ class CheckoutScreen extends GetProviderView<CartProvider> {
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Assets.icons.dicountCopon.image(height: 24, width: 24),
+                            Assets.icons.dicountCopon
+                                .image(height: 24, width: 24),
                             horizontalSpaceRegular,
                             Text(
                               "Apply Coupon",
@@ -247,7 +261,8 @@ class CheckoutScreen extends GetProviderView<CartProvider> {
                             Row(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
-                                Assets.icons.dicountCopon.image(height: 24, width: 24),
+                                Assets.icons.dicountCopon
+                                    .image(height: 24, width: 24),
                                 horizontalSpaceRegular,
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -258,7 +273,8 @@ class CheckoutScreen extends GetProviderView<CartProvider> {
                                     ),
                                     Text(
                                       "Offer Applied",
-                                      style: context.customTextTheme.text14W600.copyWith(
+                                      style: context.customTextTheme.text14W600
+                                          .copyWith(
                                         color: AppColors.kDimGray,
                                       ),
                                     )
@@ -305,8 +321,10 @@ class CheckoutScreen extends GetProviderView<CartProvider> {
                         height: 40,
                         fit: BoxFit.contain,
                       ),
-                      selected: cartListener.selectedPaymentMethod == PaymentMethod.cash,
-                      onTap: () => cartListener.onChangePaymentMethod(PaymentMethod.cash),
+                      selected: cartListener.selectedPaymentMethod ==
+                          PaymentMethod.cash,
+                      onTap: () => cartListener
+                          .onChangePaymentMethod(PaymentMethod.cash),
                     ),
                     horizontalSpaceRegular,
                     _PaymentOptionCard(
@@ -317,8 +335,10 @@ class CheckoutScreen extends GetProviderView<CartProvider> {
                         height: 34,
                         fit: BoxFit.contain,
                       ),
-                      selected: cartListener.selectedPaymentMethod == PaymentMethod.card,
-                      onTap: () => cartListener.onChangePaymentMethod(PaymentMethod.card),
+                      selected: cartListener.selectedPaymentMethod ==
+                          PaymentMethod.card,
+                      onTap: () => cartListener
+                          .onChangePaymentMethod(PaymentMethod.card),
                     ),
                   ],
                 ),
@@ -347,25 +367,30 @@ class CheckoutScreen extends GetProviderView<CartProvider> {
                       ),
                       verticalSpaceTiny,
                       _SummaryRow(
-                        label: cartListener.selectedOrderType == OrderType.takeaway
-                            ? "Takeaway Charge"
-                            : "Delivery Charge",
-                        value: "£${cartListener.calculatedDeliveryFee.toStringAsFixed(2)}",
+                        label:
+                            cartListener.selectedOrderType == OrderType.takeaway
+                                ? "Takeaway Charge"
+                                : "Delivery Charge",
+                        value:
+                            "£${cartListener.calculatedDeliveryFee.toStringAsFixed(2)}",
                       ),
                       verticalSpaceTiny,
                       _SummaryRow(
                         label: "Discount",
-                        value: "-£${cartListener.calculatedDiscount.toStringAsFixed(2)}",
+                        value:
+                            "-£${cartListener.calculatedDiscount.toStringAsFixed(2)}",
                       ),
                       verticalSpaceTiny,
                       _SummaryRow(
                         label: "Coupon Discount",
-                        value: "-£${cartListener.offerDiscount.toStringAsFixed(2)}",
+                        value:
+                            "-£${cartListener.offerDiscount.toStringAsFixed(2)}",
                       ),
                       const Divider(height: 20.0),
                       _SummaryRow(
                         label: "To Pay",
-                        value: "£${cartListener.totalAmount.toStringAsFixed(2)}",
+                        value:
+                            "£${cartListener.totalAmount.toStringAsFixed(2)}",
                         style: context.customTextTheme.text18W600,
                       ),
                     ],
@@ -375,17 +400,21 @@ class CheckoutScreen extends GetProviderView<CartProvider> {
               verticalSpaceMedium,
               Center(
                 child: IgnorePointer(
-                  ignoring: cartListener.createOrderPending || paymentListener.creatingPaymentIntent,
+                  ignoring: cartListener.createOrderPending ||
+                      paymentListener.creatingPaymentIntent,
                   child: InkWell(
                     onTap: () {
-                      if (cartProvider.selectedPaymentMethod == PaymentMethod.card) {
-                        paymentProvider
-                            .createPaymentIntent(cartProvider.calculatedDiscount, cartProvider.calculatedDeliveryFee,
-                                onPaymentSuccess: (transactionId) {
+                      if (cartProvider.selectedPaymentMethod ==
+                          PaymentMethod.card) {
+                        paymentProvider.createPaymentIntent(
+                            cartProvider.calculatedDiscount,
+                            cartProvider.calculatedDeliveryFee,
+                            onPaymentSuccess: (transactionId) {
                           cartProvider
                               .createOrder(
                                   tID: transactionId,
-                                  deliveryDate: shopListner.formattedSelectedDate,
+                                  deliveryDate:
+                                      shopListner.formattedSelectedDate,
                                   deliverySlot:
                                       "${shopListner.selectedDeliverySlot?.openingTime}--${shopListner.selectedDeliverySlot?.closingTime}")
                               .then((created) {
@@ -405,7 +434,8 @@ class CheckoutScreen extends GetProviderView<CartProvider> {
 
                       cartProvider
                           .createOrder(
-                              deliveryDate: shopListner.formattedSelectedDateForPayload,
+                              deliveryDate:
+                                  shopListner.formattedSelectedDateForPayload,
                               deliverySlot:
                                   "${shopListner.selectedDeliverySlot?.openingTime}--${shopListner.selectedDeliverySlot?.closingTime}")
                           .then((created) {
@@ -425,12 +455,14 @@ class CheckoutScreen extends GetProviderView<CartProvider> {
                         borderRadius: BorderRadius.circular(10),
                         color: AppColors.kPrimaryColor,
                       ),
-                      child: cartListener.createOrderPending || paymentListener.creatingPaymentIntent
+                      child: cartListener.createOrderPending ||
+                              paymentListener.creatingPaymentIntent
                           ? showButtonProgress()
                           : Center(
                               child: Text(
                               "PLACE ORDER",
-                              style: context.customTextTheme.text16W500.copyWith(
+                              style:
+                                  context.customTextTheme.text16W500.copyWith(
                                 color: AppColors.kWhite,
                               ),
                             )),
@@ -481,12 +513,15 @@ class _PaymentOptionCard extends StatelessWidget {
                 Positioned.fill(
                   top: 0,
                   child: Card(
-                    color: selected ? AppColors.kPrimaryColor : AppColors.kWhite,
+                    color:
+                        selected ? AppColors.kPrimaryColor : AppColors.kWhite,
                     margin: EdgeInsets.zero,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                       side: BorderSide(
-                        color: selected ? AppColors.kPrimaryColor : AppColors.kLightGray,
+                        color: selected
+                            ? AppColors.kPrimaryColor
+                            : AppColors.kLightGray,
                       ),
                     ),
                     child: Padding(
@@ -497,7 +532,8 @@ class _PaymentOptionCard extends StatelessWidget {
                       child: Text(
                         title,
                         style: GoogleFonts.quicksand(
-                          textStyle: context.customTextTheme.text16W600.copyWith(
+                          textStyle:
+                              context.customTextTheme.text16W600.copyWith(
                             fontWeight: FontWeight.w700,
                             color: selected ? AppColors.kWhite : null,
                           ),

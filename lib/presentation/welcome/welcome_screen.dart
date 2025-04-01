@@ -1,12 +1,12 @@
-import 'package:aj_customer/application/core/dependency_registrar.dart';
-import 'package:aj_customer/application/home/home_provider.dart';
+import 'package:bamboo_basket_customer_app/application/core/dependency_registrar.dart';
+import 'package:bamboo_basket_customer_app/application/home/home_provider.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/core/routes/routes.gr.dart';
-import 'package:aj_customer/core/theme/app_colors.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
-import 'package:aj_customer/core/utils/ui_utils.dart';
+import 'package:bamboo_basket_customer_app/core/routes/routes.gr.dart';
+import 'package:bamboo_basket_customer_app/core/theme/app_colors.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/core/utils/ui_utils.dart';
 import 'package:provider/provider.dart';
 
 import '../../application/auth/auth_provider.dart';
@@ -26,7 +26,7 @@ class WelcomeScreen extends StatelessWidget {
           image: DecorationImage(
         alignment: Alignment.topCenter,
         image: AssetImage(
-          Assets.images.bg01.path,
+          Assets.images.welocomeBg03.path,
         ),
         fit: BoxFit.cover,
       )),
@@ -35,12 +35,17 @@ class WelcomeScreen extends StatelessWidget {
         body: Center(
           child: Column(
             // crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SizedBox(height: context.screenHeight * 0.15),
-              Assets.images.ajLogo.image(height: 100.0),
+              // SizedBox(height: context.screenHeight * 0.15),
+              Assets.images.bambooBasketTextLogo.image(height: 50.0),
+              verticalSpaceRegular,
               buildWelcomeText(context),
               verticalSpaceRegular,
-              buildButtons(context, authProvider, authListener)
+              buildButtons(context, authProvider, authListener),
+              verticalSpaceRegular,
+              verticalSpaceRegular,
+              verticalSpaceRegular,
             ],
           ),
         ),
@@ -107,7 +112,7 @@ class WelcomeScreen extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "Discover Culinary Delights\nAt Your Doorstep",
+            "Get your groceries\ndelivered to your home",
             textAlign: TextAlign.center,
             style: context.customTextTheme.text20W600.copyWith(
               color: AppColors.kBlack,
@@ -116,9 +121,9 @@ class WelcomeScreen extends StatelessWidget {
           ),
           verticalSpaceSmall,
           Text(
-            "Order food from your favorite restaurants. Get it delivered to your doorstep in a jiffy.",
+            "The best delivery app in town for delivering your daily fresh groceries",
             textAlign: TextAlign.center,
-            style: context.customTextTheme.text16W400.copyWith(
+            style: context.customTextTheme.text14W400.copyWith(
               color: AppColors.kGray,
               fontSize: 14,
             ),

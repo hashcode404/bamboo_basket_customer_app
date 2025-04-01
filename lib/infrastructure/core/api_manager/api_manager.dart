@@ -3,8 +3,8 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/core/constants/app_identifiers.dart';
-import 'package:aj_customer/infrastructure/user/user_shared_prefs_repo.dart';
+import 'package:bamboo_basket_customer_app/core/constants/app_identifiers.dart';
+import 'package:bamboo_basket_customer_app/infrastructure/user/user_shared_prefs_repo.dart';
 
 import '../end_points/end_points.dart';
 import '../failures/app_exceptions.dart';
@@ -103,7 +103,8 @@ class APIManager {
       }
 
       final dataKey = response.requestOptions.headers["dataKey"] ?? "data";
-      final checking = response.requestOptions.headers["dataKeyChecking"] ?? true;
+      final checking =
+          response.requestOptions.headers["dataKeyChecking"] ?? true;
       if (!checking) return handler.next(response);
 
       final responseData = jsonData?[dataKey];
@@ -162,7 +163,10 @@ class APIManager {
 
       final response = await post(
         api: Endpoints.kUserLoginSecret,
-        data: {"user": auth.user.userID, "FPsecretkey": AppIdentifiers.kSecretKey},
+        data: {
+          "user": auth.user.userID,
+          "FPsecretkey": AppIdentifiers.kSecretKey
+        },
       );
 
       if (response == null) {
@@ -178,7 +182,8 @@ class APIManager {
       await repo.saveUserData(auth.copyWith(token: accessToken));
 
       try {
-        final newRequestOptions = dioError.requestOptions..headers["x-user"] = accessToken;
+        final newRequestOptions = dioError.requestOptions
+          ..headers["x-user"] = accessToken;
         final dio = Dio();
         final retryResponse = await dio.fetch(newRequestOptions);
         handler.resolve(retryResponse);
@@ -189,9 +194,12 @@ class APIManager {
       }
     }
 
-    final response = reason != null ? Response(requestOptions: dioError.requestOptions, data: reason) : res;
+    final response = reason != null
+        ? Response(requestOptions: dioError.requestOptions, data: reason)
+        : res;
 
-    final exception = _mapDioExceptionTypeToAppException(dioError.type, message);
+    final exception =
+        _mapDioExceptionTypeToAppException(dioError.type, message);
     handler.reject(DioException(
       requestOptions: dioError.requestOptions,
       error: exception,
@@ -201,7 +209,8 @@ class APIManager {
     ));
   }
 
-  static AppExceptions _mapDioExceptionTypeToAppException(DioExceptionType type, String? message) {
+  static AppExceptions _mapDioExceptionTypeToAppException(
+      DioExceptionType type, String? message) {
     switch (type) {
       case DioExceptionType.connectionTimeout:
       case DioExceptionType.sendTimeout:
@@ -344,7 +353,9 @@ class APIManager {
     }
 
     final response = await dio.put<String>(api + params,
-        data: data, queryParameters: queryParameters, options: Options(headers: headers));
+        data: data,
+        queryParameters: queryParameters,
+        options: Options(headers: headers));
     return response.data;
   }
 
@@ -358,7 +369,9 @@ class APIManager {
     Map<String, dynamic>? queryParameters,
   }) async {
     final response = await dio.patch<String>(api + params,
-        data: data, queryParameters: queryParameters, options: Options(headers: {'needToken': needAuthentication}));
+        data: data,
+        queryParameters: queryParameters,
+        options: Options(headers: {'needToken': needAuthentication}));
     return response.data;
   }
 

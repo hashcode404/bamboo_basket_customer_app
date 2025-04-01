@@ -1,10 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
-import 'package:aj_customer/application/core/base_controller.dart';
-import 'package:aj_customer/core/utils/alert_dialogs.dart';
-import 'package:aj_customer/domain/user/i_user_repo.dart';
-import 'package:aj_customer/domain/user/models/add_new_adress_request_model.dart';
+import 'package:bamboo_basket_customer_app/application/core/base_controller.dart';
+import 'package:bamboo_basket_customer_app/core/utils/alert_dialogs.dart';
+import 'package:bamboo_basket_customer_app/domain/user/i_user_repo.dart';
+import 'package:bamboo_basket_customer_app/domain/user/models/add_new_adress_request_model.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 

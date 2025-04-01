@@ -1,6 +1,6 @@
 {
-    "name": "aj_customer",
-    "short_name": "aj_customer",
+    "name": "bamboo_basket_customer_app",
+    "short_name": "bamboo_basket_customer_app",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

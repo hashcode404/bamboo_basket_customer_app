@@ -1,9 +1,10 @@
+import 'package:bamboo_basket_customer_app/core/theme/app_colors.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:aj_customer/application/products/products_provider.dart';
+import 'package:bamboo_basket_customer_app/application/products/products_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/application/auth/auth_provider.dart';
-import 'package:aj_customer/application/core/dependency_registrar.dart';
-import 'package:aj_customer/core/routes/routes.gr.dart';
+import 'package:bamboo_basket_customer_app/application/auth/auth_provider.dart';
+import 'package:bamboo_basket_customer_app/application/core/dependency_registrar.dart';
+import 'package:bamboo_basket_customer_app/core/routes/routes.gr.dart';
 import 'package:provider/provider.dart';
 
 import '../../gen/assets.gen.dart';
@@ -42,15 +43,14 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.white,
           image: DecorationImage(
-            image: AssetImage(Assets.images.pattern.path),
+            image: AssetImage(Assets.images.splashBg.path),
             fit: BoxFit.cover,
           ),
         ),
         child: Center(
-          child: Assets.images.ajLogo.image(
-            width: MediaQuery.of(context).size.width * 0.8,
+          child: Assets.images.bambooBasketWhite.image(
+            width: MediaQuery.of(context).size.width * 0.5,
           ),
         ),
       ),

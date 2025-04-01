@@ -10,34 +10,34 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i20;
 import 'package:flutter/material.dart' as _i21;
-import 'package:aj_customer/presentation/auth/change_password_screen.dart' as _i3;
-import 'package:aj_customer/presentation/auth/forgot_otp.dart' as _i6;
-import 'package:aj_customer/presentation/auth/forgot_screen.dart' as _i7;
-import 'package:aj_customer/presentation/auth/login_screen.dart' as _i9;
-import 'package:aj_customer/presentation/auth/otp_screen.dart' as _i14;
-import 'package:aj_customer/presentation/auth/register_screen.dart' as _i15;
-import 'package:aj_customer/presentation/home/home_screen.dart' as _i8;
-import 'package:aj_customer/presentation/order_online/address/add_new_address_screen.dart'
+import 'package:bamboo_basket_customer_app/presentation/auth/change_password_screen.dart' as _i3;
+import 'package:bamboo_basket_customer_app/presentation/auth/forgot_otp.dart' as _i6;
+import 'package:bamboo_basket_customer_app/presentation/auth/forgot_screen.dart' as _i7;
+import 'package:bamboo_basket_customer_app/presentation/auth/login_screen.dart' as _i9;
+import 'package:bamboo_basket_customer_app/presentation/auth/otp_screen.dart' as _i14;
+import 'package:bamboo_basket_customer_app/presentation/auth/register_screen.dart' as _i15;
+import 'package:bamboo_basket_customer_app/presentation/home/home_screen.dart' as _i8;
+import 'package:bamboo_basket_customer_app/presentation/order_online/address/add_new_address_screen.dart'
     as _i1;
-import 'package:aj_customer/presentation/order_online/cart/cart_screen.dart' as _i2;
-import 'package:aj_customer/presentation/order_online/checkout/checkout_screen.dart'
+import 'package:bamboo_basket_customer_app/presentation/order_online/cart/cart_screen.dart' as _i2;
+import 'package:bamboo_basket_customer_app/presentation/order_online/checkout/checkout_screen.dart'
     as _i4;
-import 'package:aj_customer/presentation/order_online/coupen/coupen_screen.dart'
+import 'package:bamboo_basket_customer_app/presentation/order_online/coupen/coupen_screen.dart'
     as _i5;
-import 'package:aj_customer/presentation/order_online/home/order_online_home_screen.dart'
+import 'package:bamboo_basket_customer_app/presentation/order_online/home/order_online_home_screen.dart'
     as _i10;
-import 'package:aj_customer/presentation/order_online/order_online_screen.dart'
+import 'package:bamboo_basket_customer_app/presentation/order_online/order_online_screen.dart'
     as _i11;
-import 'package:aj_customer/presentation/order_online/orders/orders_history_screen.dart'
+import 'package:bamboo_basket_customer_app/presentation/order_online/orders/orders_history_screen.dart'
     as _i12;
-import 'package:aj_customer/presentation/order_online/orders/orders_history_screens.dart'
+import 'package:bamboo_basket_customer_app/presentation/order_online/orders/orders_history_screens.dart'
     as _i13;
-import 'package:aj_customer/presentation/order_online/orders/view_order_screen.dart'
+import 'package:bamboo_basket_customer_app/presentation/order_online/orders/view_order_screen.dart'
     as _i18;
-import 'package:aj_customer/presentation/reservation/table_reservation_screen.dart'
+import 'package:bamboo_basket_customer_app/presentation/reservation/table_reservation_screen.dart'
     as _i17;
-import 'package:aj_customer/presentation/splash/splash_screen.dart' as _i16;
-import 'package:aj_customer/presentation/welcome/welcome_screen.dart' as _i19;
+import 'package:bamboo_basket_customer_app/presentation/splash/splash_screen.dart' as _i16;
+import 'package:bamboo_basket_customer_app/presentation/welcome/welcome_screen.dart' as _i19;
 
 /// generated route for
 /// [_i1.AddNewAddressScreen]

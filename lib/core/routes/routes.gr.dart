@@ -8,46 +8,55 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:aj_customer/domain/user/models/user_address_list_data_model.dart'
-    as _i25;
-import 'package:aj_customer/presentation/auth/forgot_otp.dart' as _i6;
-import 'package:aj_customer/presentation/auth/forgot_screen.dart' as _i7;
-import 'package:aj_customer/presentation/auth/login_screen.dart' as _i9;
-import 'package:aj_customer/presentation/auth/otp_screen.dart' as _i13;
-import 'package:aj_customer/presentation/auth/register_screen.dart' as _i15;
-import 'package:aj_customer/presentation/home/home_screen.dart' as _i8;
-import 'package:aj_customer/presentation/order_online/address/add_new_address_screen.dart'
-    as _i1;
-import 'package:aj_customer/presentation/order_online/address/user_address_screen.dart'
-    as _i21;
-import 'package:aj_customer/presentation/order_online/cart/cart_screen.dart'
-    as _i2;
-import 'package:aj_customer/presentation/order_online/cart/success_screen.dart'
-    as _i18;
-import 'package:aj_customer/presentation/order_online/categories/categories_screen.dart'
-    as _i3;
-import 'package:aj_customer/presentation/order_online/checkout/checkout_screen.dart'
-    as _i4;
-import 'package:aj_customer/presentation/order_online/coupen/coupen_screen.dart'
-    as _i5;
-import 'package:aj_customer/presentation/order_online/home/order_online_home_screen.dart'
-    as _i11;
-import 'package:aj_customer/presentation/order_online/order_online_screen.dart'
-    as _i12;
-import 'package:aj_customer/presentation/order_online/orders/order_history_screens.dart'
-    as _i10;
-import 'package:aj_customer/presentation/order_online/orders/view_order_screen.dart'
-    as _i22;
-import 'package:aj_customer/presentation/order_online/profile/profile_screen.dart'
-    as _i14;
-import 'package:aj_customer/presentation/reservation/table_reservation_history.dart'
-    as _i19;
-import 'package:aj_customer/presentation/reservation/table_reservation_screen.dart'
-    as _i20;
-import 'package:aj_customer/presentation/splash/splash_screen.dart' as _i16;
-import 'package:aj_customer/presentation/store/store_screen.dart' as _i17;
-import 'package:aj_customer/presentation/welcome/welcome_screen.dart' as _i23;
 import 'package:auto_route/auto_route.dart' as _i24;
+import 'package:bamboo_basket_customer_app/domain/user/models/user_address_list_data_model.dart'
+    as _i25;
+import 'package:bamboo_basket_customer_app/presentation/auth/forgot_otp.dart'
+    as _i6;
+import 'package:bamboo_basket_customer_app/presentation/auth/forgot_screen.dart'
+    as _i7;
+import 'package:bamboo_basket_customer_app/presentation/auth/login_screen.dart'
+    as _i9;
+import 'package:bamboo_basket_customer_app/presentation/auth/otp_screen.dart'
+    as _i13;
+import 'package:bamboo_basket_customer_app/presentation/auth/register_screen.dart'
+    as _i15;
+import 'package:bamboo_basket_customer_app/presentation/home/home_screen.dart'
+    as _i8;
+import 'package:bamboo_basket_customer_app/presentation/order_online/address/add_new_address_screen.dart'
+    as _i1;
+import 'package:bamboo_basket_customer_app/presentation/order_online/address/user_address_screen.dart'
+    as _i21;
+import 'package:bamboo_basket_customer_app/presentation/order_online/cart/cart_screen.dart'
+    as _i2;
+import 'package:bamboo_basket_customer_app/presentation/order_online/cart/success_screen.dart'
+    as _i18;
+import 'package:bamboo_basket_customer_app/presentation/order_online/categories/categories_screen.dart'
+    as _i3;
+import 'package:bamboo_basket_customer_app/presentation/order_online/checkout/checkout_screen.dart'
+    as _i4;
+import 'package:bamboo_basket_customer_app/presentation/order_online/coupen/coupen_screen.dart'
+    as _i5;
+import 'package:bamboo_basket_customer_app/presentation/order_online/home/order_online_home_screen.dart'
+    as _i11;
+import 'package:bamboo_basket_customer_app/presentation/order_online/order_online_screen.dart'
+    as _i12;
+import 'package:bamboo_basket_customer_app/presentation/order_online/orders/order_history_screens.dart'
+    as _i10;
+import 'package:bamboo_basket_customer_app/presentation/order_online/orders/view_order_screen.dart'
+    as _i22;
+import 'package:bamboo_basket_customer_app/presentation/order_online/profile/profile_screen.dart'
+    as _i14;
+import 'package:bamboo_basket_customer_app/presentation/reservation/table_reservation_history.dart'
+    as _i19;
+import 'package:bamboo_basket_customer_app/presentation/reservation/table_reservation_screen.dart'
+    as _i20;
+import 'package:bamboo_basket_customer_app/presentation/splash/splash_screen.dart'
+    as _i16;
+import 'package:bamboo_basket_customer_app/presentation/store/store_screen.dart'
+    as _i17;
+import 'package:bamboo_basket_customer_app/presentation/welcome/welcome_screen.dart'
+    as _i23;
 import 'package:flutter/cupertino.dart' as _i27;
 import 'package:flutter/material.dart' as _i26;
 
@@ -58,12 +67,14 @@ class AddNewAddressScreenRoute
   AddNewAddressScreenRoute({
     required _i25.UserAddressDataModel? address,
     _i26.Key? key,
+    bool isFromProfieView = false,
     List<_i24.PageRouteInfo>? children,
   }) : super(
           AddNewAddressScreenRoute.name,
           args: AddNewAddressScreenRouteArgs(
             address: address,
             key: key,
+            isFromProfieView: isFromProfieView,
           ),
           initialChildren: children,
         );
@@ -77,6 +88,7 @@ class AddNewAddressScreenRoute
       return _i1.AddNewAddressScreen(
         args.address,
         key: args.key,
+        isFromProfieView: args.isFromProfieView,
       );
     },
   );
@@ -86,15 +98,18 @@ class AddNewAddressScreenRouteArgs {
   const AddNewAddressScreenRouteArgs({
     required this.address,
     this.key,
+    this.isFromProfieView = false,
   });
 
   final _i25.UserAddressDataModel? address;
 
   final _i26.Key? key;
 
+  final bool isFromProfieView;
+
   @override
   String toString() {
-    return 'AddNewAddressScreenRouteArgs{address: $address, key: $key}';
+    return 'AddNewAddressScreenRouteArgs{address: $address, key: $key, isFromProfieView: $isFromProfieView}';
   }
 }
 

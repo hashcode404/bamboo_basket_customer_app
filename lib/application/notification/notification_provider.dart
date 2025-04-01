@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/application/core/base_controller.dart';
+import 'package:bamboo_basket_customer_app/application/core/base_controller.dart';
 import 'package:injectable/injectable.dart';
 import 'package:permission_handler/permission_handler.dart';
 

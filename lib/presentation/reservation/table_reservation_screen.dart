@@ -3,16 +3,16 @@ import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:dart_extensions/dart_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:aj_customer/application/core/time_dropdown_provider.dart';
-import 'package:aj_customer/application/table/table_provider.dart';
-import 'package:aj_customer/application/user/user_provider.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
-import 'package:aj_customer/core/utils/alert_dialogs.dart';
-import 'package:aj_customer/core/utils/ui_utils.dart';
-import 'package:aj_customer/presentation/widgets/custom_back_button.dart';
-import 'package:aj_customer/presentation/widgets/get_provider_view.dart';
-import 'package:aj_customer/presentation/widgets/qty_counter_button.dart';
-import 'package:aj_customer/presentation/widgets/time_dropdown.dart';
+import 'package:bamboo_basket_customer_app/application/core/time_dropdown_provider.dart';
+import 'package:bamboo_basket_customer_app/application/table/table_provider.dart';
+import 'package:bamboo_basket_customer_app/application/user/user_provider.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/core/utils/alert_dialogs.dart';
+import 'package:bamboo_basket_customer_app/core/utils/ui_utils.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/custom_back_button.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/get_provider_view.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/qty_counter_button.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/time_dropdown.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:provider/provider.dart';
 
@@ -49,8 +49,10 @@ class TableReservationScreen extends GetProviderView<TableProvider> {
           visible: context.mq.viewInsets.bottom == 0.0,
           child: Container(
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-            decoration: BoxDecoration(color: AppColors.kLightWhite2, boxShadow: [
+            padding:
+                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            decoration:
+                BoxDecoration(color: AppColors.kLightWhite2, boxShadow: [
               BoxShadow(
                 color: AppColors.kGray.withOpacity(0.15),
                 blurRadius: 8.0,
@@ -82,7 +84,8 @@ class TableReservationScreen extends GetProviderView<TableProvider> {
                       return;
                     }
                     final reserved = await tableProvider.reserveADiningTable(
-                      reservationTime: timeDropdownProvider.selectedTimeAsTimeOfDay!,
+                      reservationTime:
+                          timeDropdownProvider.selectedTimeAsTimeOfDay!,
                     );
                     if (reserved) {
                       context.router.back();
@@ -108,13 +111,16 @@ class TableReservationScreen extends GetProviderView<TableProvider> {
                 verticalSpaceSmall,
                 CalendarDatePicker2(
                   config: CalendarDatePicker2Config(
-                    selectableDayPredicate: (date) => date.isAfter(DateTime.now().subtract(const Duration(days: 1))),
+                    selectableDayPredicate: (date) => date.isAfter(
+                        DateTime.now().subtract(const Duration(days: 1))),
                     daySplashColor: AppColors.kBlack2.withOpacity(0.1),
                   ),
                   value: [tableListener.reservationDate],
                   onValueChanged: (dates) {
                     tableProvider.onChangeReservationDate(dates.first);
-                    context.read<TimeDropdownProvider>().updateSelectedDate(dates.first);
+                    context
+                        .read<TimeDropdownProvider>()
+                        .updateSelectedDate(dates.first);
                   },
                 ),
                 verticalSpaceSmall,
@@ -178,7 +184,8 @@ class TableReservationScreen extends GetProviderView<TableProvider> {
                             validator: FormBuilderValidators.compose([
                               FormBuilderValidators.required(),
                             ]),
-                            autovalidateMode: AutovalidateMode.onUserInteraction,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                           ),
                         ],
                       ),
@@ -204,7 +211,8 @@ class TableReservationScreen extends GetProviderView<TableProvider> {
                               FormBuilderValidators.required(),
                               FormBuilderValidators.phoneNumber(),
                             ]),
-                            autovalidateMode: AutovalidateMode.onUserInteraction,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                           ),
                         ],
                       ),

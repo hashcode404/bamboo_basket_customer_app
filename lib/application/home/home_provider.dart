@@ -1,4 +1,4 @@
-import 'package:aj_customer/application/core/base_controller.dart';
+import 'package:bamboo_basket_customer_app/application/core/base_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 

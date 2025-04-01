@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:aj_customer/core/theme/app_colors.dart';
+import 'package:bamboo_basket_customer_app/core/theme/app_colors.dart';
 
 class BottomSheetDragHandler extends StatelessWidget {
   const BottomSheetDragHandler({super.key});

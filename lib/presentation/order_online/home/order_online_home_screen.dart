@@ -1,9 +1,9 @@
 import 'dart:developer';
 
-import 'package:aj_customer/application/core/api_response.dart';
-import 'package:aj_customer/application/search/search_provider.dart';
+import 'package:bamboo_basket_customer_app/application/core/api_response.dart';
+import 'package:bamboo_basket_customer_app/application/search/search_provider.dart';
 
-import 'package:aj_customer/presentation/widgets/qty_counter_button.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/qty_counter_button.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_options.dart';
@@ -11,13 +11,13 @@ import 'package:carousel_slider/carousel_slider.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/application/cart/cart_provider.dart';
-import 'package:aj_customer/application/products/products_provider.dart';
-import 'package:aj_customer/core/theme/app_colors.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
-import 'package:aj_customer/core/utils/ui_utils.dart';
-import 'package:aj_customer/presentation/widgets/manage_dish_sheets.dart';
-import 'package:aj_customer/presentation/widgets/shimmer_product_details_tile.dart';
+import 'package:bamboo_basket_customer_app/application/cart/cart_provider.dart';
+import 'package:bamboo_basket_customer_app/application/products/products_provider.dart';
+import 'package:bamboo_basket_customer_app/core/theme/app_colors.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/core/utils/ui_utils.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/manage_dish_sheets.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/shimmer_product_details_tile.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 import 'package:collection/collection.dart';
@@ -44,7 +44,7 @@ class _OrderOnlineHomeScreenState extends State<OrderOnlineHomeScreen>
   // final isNewView = true;
   final List<String> imageUrlsForBanner = [
     Assets.images.ajBanner01.path,
-    Assets.images.ajBanner02.path,
+    Assets.images.banner04.path,
     Assets.images.ajBanner03.path,
   ];
 
@@ -156,12 +156,13 @@ class _OrderOnlineHomeScreenState extends State<OrderOnlineHomeScreen>
     );
   }
 
-  Row buildAppbar() {
+  Widget buildAppbar() {
     return Row(
       children: [
+        horizontalSpaceRegular,
         Image(
-          image: AssetImage(Assets.images.ajLogo.path),
-          height: MediaQuery.of(context).size.height * 0.06,
+          image: AssetImage(Assets.images.bambooBasketTextLogo.path),
+          height: MediaQuery.of(context).size.height * 0.04,
         ),
         const Spacer(),
         InkWell(
@@ -169,6 +170,7 @@ class _OrderOnlineHomeScreenState extends State<OrderOnlineHomeScreen>
             showSearch(context: context, delegate: ProductSearchDelegate());
           },
           child: Assets.icons.searchNormal.svg(
+            color: AppColors.kSecondaryColor,
             height: MediaQuery.of(context).size.height * 0.035,
           ),
         ),

@@ -1,14 +1,14 @@
 import 'dart:developer';
 
-import 'package:aj_customer/presentation/widgets/custom_back_button.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/custom_back_button.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/application/user/user_provider.dart';
-import 'package:aj_customer/core/theme/app_colors.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
-import 'package:aj_customer/domain/user/models/user_address_list_data_model.dart';
-import 'package:aj_customer/presentation/widgets/button_progress.dart';
-import 'package:aj_customer/presentation/widgets/get_provider_view.dart';
+import 'package:bamboo_basket_customer_app/application/user/user_provider.dart';
+import 'package:bamboo_basket_customer_app/core/theme/app_colors.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/domain/user/models/user_address_list_data_model.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/button_progress.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/get_provider_view.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/utils/ui_utils.dart';

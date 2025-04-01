@@ -1,6 +1,6 @@
 class AppIdentifiers {
-  static const String kApplicationName = "AJ Daily Fresh";
-  static const String kShopName = "AJ Daily Fresh";
+  static const String kApplicationName = "Bamboo Basket";
+  static const String kShopName = "Bamboo Basket";
   static const String kSecretKey = 'b*Ferns~FP@UK08^';
   static const String kFPSecretKey = '703c692f41870dba1259023e28b57e42';
   static const String kReservationSecretKey =
@@ -10,16 +10,19 @@ class AppIdentifiers {
 
   // static String kShopIdentifier = 'le-arabia';
 
-  static const String kShopId = '42';
+  static const String kShopId = '43';
 
-  static String kShopIdentifier = 'aj-daily-fresh';
+  static String kShopIdentifier = 'bamboo-basket';
 
-  static String kShopInfoEmail = 'info@ajdailyfresh.co.uk';
-  static List<String> kShopInfoPh = ['+44 7587319110', '+44 7767969365'];
+  static String kShopInfoEmail = 'info@bamboobasket.shop';
+  static List<String> kShopInfoPh = [
+    '+44 7715819009',
+  ];
+  // static String kShopInfoPh = '+44 7587319110';
   static String kShopInfoAddress =
-      '23 HOOD STREET, NORTHAMPTON, UNITED KINGDOM NN1 3QT';
+      '13a colbea 1 george williams way Essex United Kingdom CO1 2JS';
 
-  static const String kBuildIdentifier = 'co.uk.ajdailyfresh.app';
+  static const String kBuildIdentifier = 'co.uk.bamboo-basket.app';
   // static const String stripePublishableKey =
   //     'pk_live_m2SrQgdxXoBseBPFsM95NF5m001zmLq3N5';
   static const String stripeTestPublishableKey =

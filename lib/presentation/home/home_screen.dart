@@ -1,13 +1,13 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:aj_customer/core/constants/app_identifiers.dart';
+import 'package:bamboo_basket_customer_app/core/constants/app_identifiers.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/core/routes/routes.gr.dart';
-import 'package:aj_customer/core/theme/app_colors.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
-import 'package:aj_customer/core/utils/contact_utils.dart';
-import 'package:aj_customer/core/utils/ui_utils.dart';
+import 'package:bamboo_basket_customer_app/core/routes/routes.gr.dart';
+import 'package:bamboo_basket_customer_app/core/theme/app_colors.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/core/utils/contact_utils.dart';
+import 'package:bamboo_basket_customer_app/core/utils/ui_utils.dart';
 import 'package:provider/provider.dart';
 
 import '../../application/products/products_provider.dart';
@@ -102,7 +102,7 @@ class HomeScreen extends StatelessWidget {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(left: 15.0),
-                child: Assets.images.ajLogo.image(height: 45.0),
+                child: Assets.images.bambooBasketTextLogo.image(height: 45.0),
               ),
               InkWell(
                 onTap: () => context.router.push(ProfileScreenRoute(
@@ -314,7 +314,8 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         FilledButton(
                           onPressed: () {
-                            context.router.push(const TableReservationScreenRoute());
+                            context.router
+                                .push(const TableReservationScreenRoute());
                           },
                           style: FilledButton.styleFrom(
                             minimumSize: const Size(100, 38.0),
@@ -330,7 +331,8 @@ class HomeScreen extends StatelessWidget {
                         horizontalSpaceMedium,
                         FilledButton(
                           onPressed: () async {
-                            context.router.push(const TableReservationHistoryScreenRoute());
+                            context.router.push(
+                                const TableReservationHistoryScreenRoute());
                             // await tableProvider.fetchAllTableReservations();
                           },
                           style: FilledButton.styleFrom(
@@ -386,18 +388,23 @@ class HomeScreen extends StatelessWidget {
                               children: AppIdentifiers.kShopInfoPh.map(
                                 (e) {
                                   return InkWell(
-                                    onTap: () => contactFunctionalities.makePhoneCall(e),
+                                    onTap: () =>
+                                        contactFunctionalities.makePhoneCall(e),
                                     child: Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 15.0),
                                       child: Card(
                                         shape: RoundedRectangleBorder(
-                                          side: const BorderSide(color: AppColors.kGray2),
-                                          borderRadius: BorderRadius.circular(15.0),
+                                          side: const BorderSide(
+                                              color: AppColors.kGray2),
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
                                         ),
                                         child: Padding(
                                           padding: const EdgeInsets.all(15.0),
                                           child: Row(children: [
-                                            const Icon(FluentIcons.call_24_filled),
+                                            const Icon(
+                                                FluentIcons.call_24_filled),
                                             horizontalSpaceRegular,
                                             Text(e),
                                           ]),

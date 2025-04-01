@@ -1,7 +1,7 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
-import 'package:aj_customer/presentation/widgets/custom_search_delegate.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/custom_search_delegate.dart';
 import '../../core/theme/app_colors.dart';
 
 class SearchBarWidget extends StatelessWidget {

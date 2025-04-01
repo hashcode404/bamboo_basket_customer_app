@@ -2,13 +2,13 @@ import 'dart:math';
 
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/application/order/order_provider.dart';
-import 'package:aj_customer/application/user/user_provider.dart';
-import 'package:aj_customer/core/theme/app_theme.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
-import 'package:aj_customer/domain/user/models/user_login_response.dart';
-import 'package:aj_customer/presentation/widgets/custom_painer_shape.dart';
-import 'package:aj_customer/presentation/widgets/get_provider_view.dart';
+import 'package:bamboo_basket_customer_app/application/order/order_provider.dart';
+import 'package:bamboo_basket_customer_app/application/user/user_provider.dart';
+import 'package:bamboo_basket_customer_app/core/theme/app_theme.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/domain/user/models/user_login_response.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/custom_painer_shape.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/get_provider_view.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/utils/ui_utils.dart';
@@ -60,7 +60,6 @@ class ViewOrderScreen extends GetProviderView<OrderProvider> {
                     verticalSpaceSmall,
                     _buildOrderAddressDetails(orderDetails, customerDetails),
                     verticalSpaceLarge,
-                   
                   ],
                 ),
               ),

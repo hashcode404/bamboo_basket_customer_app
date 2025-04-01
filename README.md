@@ -1,4 +1,4 @@
-# aj_customer
+# bamboo_basket_customer_app
 
 A new Flutter project.
 

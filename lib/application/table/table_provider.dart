@@ -2,12 +2,12 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:aj_customer/application/core/api_response.dart';
-import 'package:aj_customer/application/core/base_controller.dart';
-import 'package:aj_customer/core/constants/app_identifiers.dart';
-import 'package:aj_customer/core/utils/alert_dialogs.dart';
-import 'package:aj_customer/domain/table/models/reserve_dining_table.dart';
-import 'package:aj_customer/domain/user/i_user_shared_prefs.dart';
+import 'package:bamboo_basket_customer_app/application/core/api_response.dart';
+import 'package:bamboo_basket_customer_app/application/core/base_controller.dart';
+import 'package:bamboo_basket_customer_app/core/constants/app_identifiers.dart';
+import 'package:bamboo_basket_customer_app/core/utils/alert_dialogs.dart';
+import 'package:bamboo_basket_customer_app/domain/table/models/reserve_dining_table.dart';
+import 'package:bamboo_basket_customer_app/domain/user/i_user_shared_prefs.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../domain/table/i_table_repo.dart';
@@ -21,7 +21,9 @@ class TableProvider extends ChangeNotifier with BaseController {
 
   final List<TableReservationDetails> _tableReservations = [];
 
-  TableProvider({required ITableRepo tableRepo, required IUserSharedPrefsRepo userSharedPrefsRepo})
+  TableProvider(
+      {required ITableRepo tableRepo,
+      required IUserSharedPrefsRepo userSharedPrefsRepo})
       : _tableRepo = tableRepo,
         _userSharedPrefsRepo = userSharedPrefsRepo;
 
@@ -30,7 +32,8 @@ class TableProvider extends ChangeNotifier with BaseController {
   APIResponse<List<TableReservationDetails>> _tableReservationsResponse =
       APIResponse<List<TableReservationDetails>>.initial();
 
-  APIResponse<List<TableReservationDetails>> get tableRespo => _tableReservationsResponse;
+  APIResponse<List<TableReservationDetails>> get tableRespo =>
+      _tableReservationsResponse;
 
   // bool get isEmpty => _ordersResponse.data?.isEmpty ?? true;
 

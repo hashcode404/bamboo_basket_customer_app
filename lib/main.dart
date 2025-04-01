@@ -5,11 +5,11 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:aj_customer/application/core/dependency_registrar.dart';
-import 'package:aj_customer/core/constants/app_identifiers.dart';
-import 'package:aj_customer/core/routes/routes.dart';
-import 'package:aj_customer/core/theme/app_theme.dart';
-import 'package:aj_customer/domain/dependency_injection/injection_config.dart';
+import 'package:bamboo_basket_customer_app/application/core/dependency_registrar.dart';
+import 'package:bamboo_basket_customer_app/core/constants/app_identifiers.dart';
+import 'package:bamboo_basket_customer_app/core/routes/routes.dart';
+import 'package:bamboo_basket_customer_app/core/theme/app_theme.dart';
+import 'package:bamboo_basket_customer_app/domain/dependency_injection/injection_config.dart';
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
 

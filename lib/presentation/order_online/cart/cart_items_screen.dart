@@ -1,8 +1,8 @@
 import 'dart:developer';
 
-import 'package:aj_customer/application/shop/shop_provider.dart';
-import 'package:aj_customer/core/theme/app_colors.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/application/shop/shop_provider.dart';
+import 'package:bamboo_basket_customer_app/core/theme/app_colors.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

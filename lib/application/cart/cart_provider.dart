@@ -5,14 +5,14 @@ import 'package:dart_extensions/dart_extensions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:aj_customer/application/core/base_controller.dart';
-import 'package:aj_customer/core/constants/app_identifiers.dart';
-import 'package:aj_customer/domain/cart/i_cart_repo.dart';
-import 'package:aj_customer/domain/checkout/models/calculate_take_away_details.dart';
-import 'package:aj_customer/domain/offer/i_offer_repo.dart';
-import 'package:aj_customer/domain/offer/models/offer_details_model.dart';
-import 'package:aj_customer/domain/offer/models/validated_coupon_details.dart';
-import 'package:aj_customer/domain/store/models/product_details_model.dart';
+import 'package:bamboo_basket_customer_app/application/core/base_controller.dart';
+import 'package:bamboo_basket_customer_app/core/constants/app_identifiers.dart';
+import 'package:bamboo_basket_customer_app/domain/cart/i_cart_repo.dart';
+import 'package:bamboo_basket_customer_app/domain/checkout/models/calculate_take_away_details.dart';
+import 'package:bamboo_basket_customer_app/domain/offer/i_offer_repo.dart';
+import 'package:bamboo_basket_customer_app/domain/offer/models/offer_details_model.dart';
+import 'package:bamboo_basket_customer_app/domain/offer/models/validated_coupon_details.dart';
+import 'package:bamboo_basket_customer_app/domain/store/models/product_details_model.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
@@ -627,7 +627,6 @@ class CartProvider extends ChangeNotifier with BaseController {
       ),
     );
     inspect(_cartDetailsModel);
-          
 
     notifyListeners();
     return true;

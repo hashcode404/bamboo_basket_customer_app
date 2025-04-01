@@ -1,4 +1,4 @@
-import 'package:aj_customer/infrastructure/core/failures/app_exceptions.dart';
+import 'package:bamboo_basket_customer_app/infrastructure/core/failures/app_exceptions.dart';
 import 'package:fpdart/fpdart.dart';
 
 import 'models/calculate_take_away_details.dart';
@@ -7,7 +7,8 @@ import 'models/checkout_data_model.dart';
 import 'models/payment_intent_details.dart';
 
 abstract class ICheckoutRepo {
-  Future<Either<AppExceptions, CalculatedDeliveryChargeDetailsModel>> calculateDeliveryFee({
+  Future<Either<AppExceptions, CalculatedDeliveryChargeDetailsModel>>
+      calculateDeliveryFee({
     required String shopID,
     required String destinationPostCode,
   });

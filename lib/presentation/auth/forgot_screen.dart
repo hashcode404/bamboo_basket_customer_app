@@ -2,14 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:aj_customer/application/auth/auth_provider.dart';
-import 'package:aj_customer/core/routes/routes.gr.dart';
-import 'package:aj_customer/core/theme/app_colors.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
-import 'package:aj_customer/core/utils/ui_utils.dart';
-import 'package:aj_customer/gen/assets.gen.dart';
-import 'package:aj_customer/presentation/widgets/custom_back_button.dart';
-import 'package:aj_customer/presentation/widgets/get_provider_view.dart';
+import 'package:bamboo_basket_customer_app/application/auth/auth_provider.dart';
+import 'package:bamboo_basket_customer_app/core/routes/routes.gr.dart';
+import 'package:bamboo_basket_customer_app/core/theme/app_colors.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/core/utils/ui_utils.dart';
+import 'package:bamboo_basket_customer_app/gen/assets.gen.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/custom_back_button.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/get_provider_view.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 import '../widgets/button_progress.dart';
@@ -74,7 +74,8 @@ class ForgotPasswordScreen extends GetProviderView<AuthProvider> {
                   onPressed: authListener.resetLoading
                       ? null
                       : () async {
-                          final isValidated = await authProvider.resetPassword();
+                          final isValidated =
+                              await authProvider.resetPassword();
                           if (isValidated) {
                             // ignore: use_build_context_synchronously
                             context.router.push(const ForgotOtpScreenRoute());

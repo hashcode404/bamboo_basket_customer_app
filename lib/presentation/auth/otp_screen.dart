@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/application/auth/auth_provider.dart';
-import 'package:aj_customer/core/routes/routes.gr.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
-import 'package:aj_customer/core/utils/ui_utils.dart';
-import 'package:aj_customer/presentation/widgets/custom_back_button.dart';
+import 'package:bamboo_basket_customer_app/application/auth/auth_provider.dart';
+import 'package:bamboo_basket_customer_app/core/routes/routes.gr.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/core/utils/ui_utils.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/custom_back_button.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +29,8 @@ class _OtpScreenState extends State<OtpScreen> {
     final authListener = context.watch<AuthProvider>();
     return PopScope(
       canPop: true,
-      onPopInvokedWithResult: (_, __) => authProvider.registerOTPController.clear(),
+      onPopInvokedWithResult: (_, __) =>
+          authProvider.registerOTPController.clear(),
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
@@ -70,7 +71,9 @@ class _OtpScreenState extends State<OtpScreen> {
                         style: context.customTextTheme.text14W600,
                       ),
                       horizontalSpaceTiny,
-                      InkWell(onTap: () => Navigator.pop(context), child: const Icon(Icons.edit, size: 16.0))
+                      InkWell(
+                          onTap: () => Navigator.pop(context),
+                          child: const Icon(Icons.edit, size: 16.0))
                     ],
                   ),
                 ),
@@ -113,7 +116,8 @@ class _OtpScreenState extends State<OtpScreen> {
                       children: [
                         Text(
                           "Didn't get OTP? ",
-                          style: context.customTextTheme.text12W500.copyWith(color: AppColors.kGray3),
+                          style: context.customTextTheme.text12W500
+                              .copyWith(color: AppColors.kGray3),
                         ),
                         Text(
                           "Resend OTP",
@@ -137,7 +141,6 @@ class _OtpScreenState extends State<OtpScreen> {
                           DependencyRegistrar.initializeAllProviders(context);
                           Future.delayed(const Duration(seconds: 1), () {
                             context.router.replaceAll([
-                              
                               HomeScreenRoute(),
                             ]);
                           });
@@ -160,7 +163,8 @@ class _OtpScreenState extends State<OtpScreen> {
                         child: !authListener.registerLoading
                             ? Text(
                                 "SUBMIT",
-                                style: context.customTextTheme.text16W400.copyWith(color: Colors.white),
+                                style: context.customTextTheme.text16W400
+                                    .copyWith(color: Colors.white),
                               )
                             : showButtonProgress(),
                       )),

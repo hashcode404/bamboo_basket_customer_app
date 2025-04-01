@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/core/routes/routes.gr.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
-import 'package:aj_customer/core/utils/ui_utils.dart';
-import 'package:aj_customer/core/utils/utils.dart';
-import 'package:aj_customer/presentation/widgets/custom_back_button.dart';
+import 'package:bamboo_basket_customer_app/core/routes/routes.gr.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/core/utils/ui_utils.dart';
+import 'package:bamboo_basket_customer_app/core/utils/utils.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/custom_back_button.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:provider/provider.dart';
 
@@ -59,7 +59,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
                 verticalSpaceMedium,
-                authListener.currentRegForm == 0 ? _registerForm1() : _registerForm2(),
+                authListener.currentRegForm == 0
+                    ? _registerForm1()
+                    : _registerForm2(),
 
                 verticalSpaceMedium,
                 InkWell(
@@ -73,7 +75,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       } else {
                         validated = authProvider.validateRegisterForm2();
                         if (validated) {
-                          authProvider.sendVerifyOTPForRegistration().then((done) {
+                          authProvider
+                              .sendVerifyOTPForRegistration()
+                              .then((done) {
                             if (done) {
                               // Navigate to OTP Screen
                               context.pushRoute(const OtpScreenRoute());
@@ -96,8 +100,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: Center(
                         child: !authListener.registerOTPLoading
                             ? Text(
-                                authListener.currentRegForm == 1 ? "REGISTER" : "NEXT",
-                                style: context.customTextTheme.text16W400.copyWith(color: AppColors.kWhite),
+                                authListener.currentRegForm == 1
+                                    ? "REGISTER"
+                                    : "NEXT",
+                                style: context.customTextTheme.text16W400
+                                    .copyWith(color: AppColors.kWhite),
                               )
                             : showButtonProgress(),
                       ),
@@ -117,12 +124,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     children: [
                       Text(
                         "Already have an account? ",
-                        style: context.customTextTheme.text14W500.copyWith(color: AppColors.kGray3),
+                        style: context.customTextTheme.text14W500
+                            .copyWith(color: AppColors.kGray3),
                       ),
                       InkWell(
                         onTap: () {
                           context.router.replaceAll([
-                             LoginScreenRoute(),
+                            LoginScreenRoute(),
                           ]);
                         },
                         child: Text(
@@ -279,7 +287,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     customBorder: const CircleBorder(),
                     onTap: authProvider.toggleRegisterPassword,
                     child: Icon(
-                      authListener.registerPasswordHide ? FluentIcons.eye_24_regular : FluentIcons.eye_off_24_regular,
+                      authListener.registerPasswordHide
+                          ? FluentIcons.eye_24_regular
+                          : FluentIcons.eye_off_24_regular,
                       color: AppColors.kGray3,
                     )),
                 border: OutlineInputBorder(
@@ -318,7 +328,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     customBorder: const CircleBorder(),
                     onTap: authProvider.toggleRegisterPassword,
                     child: Icon(
-                      authListener.registerPasswordHide ? FluentIcons.eye_24_regular : FluentIcons.eye_off_24_regular,
+                      authListener.registerPasswordHide
+                          ? FluentIcons.eye_24_regular
+                          : FluentIcons.eye_off_24_regular,
                       color: AppColors.kGray3,
                     )),
                 border: OutlineInputBorder(

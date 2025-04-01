@@ -1,15 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/application/cart/cart_provider.dart';
-import 'package:aj_customer/core/theme/app_colors.dart';
-import 'package:aj_customer/core/theme/app_theme.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
-import 'package:aj_customer/core/utils/alert_dialogs.dart';
-import 'package:aj_customer/core/utils/ui_utils.dart';
-import 'package:aj_customer/domain/offer/models/offer_details_model.dart';
-import 'package:aj_customer/gen/assets.gen.dart';
-import 'package:aj_customer/presentation/widgets/custom_back_button.dart';
-import 'package:aj_customer/presentation/widgets/get_provider_view.dart';
+import 'package:bamboo_basket_customer_app/application/cart/cart_provider.dart';
+import 'package:bamboo_basket_customer_app/core/theme/app_colors.dart';
+import 'package:bamboo_basket_customer_app/core/theme/app_theme.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/core/utils/alert_dialogs.dart';
+import 'package:bamboo_basket_customer_app/core/utils/ui_utils.dart';
+import 'package:bamboo_basket_customer_app/domain/offer/models/offer_details_model.dart';
+import 'package:bamboo_basket_customer_app/gen/assets.gen.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/custom_back_button.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/get_provider_view.dart';
 
 @RoutePage()
 class CoupenScreen extends GetProviderView<CartProvider> {
@@ -120,7 +120,8 @@ class _CouponDetailsTile extends StatelessWidget {
                           horizontalSpaceTiny,
                           Text(
                             detailsModel.coupenCode ?? '',
-                            style: context.customTextTheme.text14W700.copyWith(color: AppColors.kPrimaryColor),
+                            style: context.customTextTheme.text14W700
+                                .copyWith(color: AppColors.kPrimaryColor),
                           ),
                           horizontalSpaceSmall,
                         ],
@@ -129,11 +130,13 @@ class _CouponDetailsTile extends StatelessWidget {
                           ? const SizedBox.shrink()
                           : Text(
                               detailsModel.coupenDetails ?? '',
-                              style: context.customTextTheme.text14W600.copyWith(color: AppColors.kGray),
+                              style: context.customTextTheme.text14W600
+                                  .copyWith(color: AppColors.kGray),
                             ),
                       Text(
                         'Min order £${detailsModel.minSpend ?? ''}',
-                        style: context.customTextTheme.text14W500.copyWith(color: AppColors.kGray),
+                        style: context.customTextTheme.text14W500
+                            .copyWith(color: AppColors.kGray),
                       ),
                     ],
                   ),
@@ -150,7 +153,8 @@ class _CouponDetailsTile extends StatelessWidget {
                         return;
                       }
 
-                      final applied = await cartProvider.validateOffer(detailsModel.coupenCode!);
+                      final applied = await cartProvider
+                          .validateOffer(detailsModel.coupenCode!);
 
                       if (applied) {
                         // ignore: use_build_context_synchronously
@@ -163,7 +167,8 @@ class _CouponDetailsTile extends StatelessWidget {
                     },
                     style: OutlinedButton.styleFrom(
                         minimumSize: const Size(20, 22),
-                        padding: const EdgeInsetsDirectional.symmetric(horizontal: 14, vertical: 5)),
+                        padding: const EdgeInsetsDirectional.symmetric(
+                            horizontal: 14, vertical: 5)),
                     child: Text(
                       "APPLY",
                       style: context.customTextTheme.text14W600,
@@ -171,7 +176,8 @@ class _CouponDetailsTile extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2),
                   child: CustomPaint(
                     size: const Size(2, double.infinity),
                     painter: DashedLineVerticalPainter(),

@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:aj_customer/domain/cart/i_cart_repo.dart';
-import 'package:aj_customer/domain/cart/models/cart_details_model.dart';
-import 'package:aj_customer/infrastructure/core/api_manager/api_manager.dart';
-import 'package:aj_customer/infrastructure/core/end_points/end_points.dart';
-import 'package:aj_customer/infrastructure/core/failures/app_exceptions.dart';
+import 'package:bamboo_basket_customer_app/domain/cart/i_cart_repo.dart';
+import 'package:bamboo_basket_customer_app/domain/cart/models/cart_details_model.dart';
+import 'package:bamboo_basket_customer_app/infrastructure/core/api_manager/api_manager.dart';
+import 'package:bamboo_basket_customer_app/infrastructure/core/end_points/end_points.dart';
+import 'package:bamboo_basket_customer_app/infrastructure/core/failures/app_exceptions.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 
@@ -27,7 +27,9 @@ class CartRepo implements ICartRepo {
       }
       return const Option.none();
     } on DioException catch (e) {
-      return Option.of(e.error is AppExceptions ? e.error as AppExceptions : InternalServerErrorException());
+      return Option.of(e.error is AppExceptions
+          ? e.error as AppExceptions
+          : InternalServerErrorException());
     } catch (_) {
       return Option.of(InternalServerErrorException());
     }
@@ -45,7 +47,9 @@ class CartRepo implements ICartRepo {
       }
       return const Option.none();
     } on DioException catch (e) {
-      return Option.of(e.error is AppExceptions ? e.error as AppExceptions : InternalServerErrorException());
+      return Option.of(e.error is AppExceptions
+          ? e.error as AppExceptions
+          : InternalServerErrorException());
     } catch (_) {
       return Option.of(InternalServerErrorException());
     }
@@ -63,7 +67,9 @@ class CartRepo implements ICartRepo {
       }
       return const Option.none();
     } on DioException catch (e) {
-      return Option.of(e.error is AppExceptions ? e.error as AppExceptions : InternalServerErrorException());
+      return Option.of(e.error is AppExceptions
+          ? e.error as AppExceptions
+          : InternalServerErrorException());
     } catch (_) {
       return Option.of(InternalServerErrorException());
     }
@@ -81,7 +87,9 @@ class CartRepo implements ICartRepo {
       }
       return Right(CartDetailsModel.fromMap(jsonDecode(response)["cart"]));
     } on DioException catch (e) {
-      return Left(e.error is AppExceptions ? e.error as AppExceptions : InternalServerErrorException());
+      return Left(e.error is AppExceptions
+          ? e.error as AppExceptions
+          : InternalServerErrorException());
     } catch (_) {
       return Left(InternalServerErrorException());
     }
@@ -104,7 +112,9 @@ class CartRepo implements ICartRepo {
       }
       return const Option.none();
     } on DioException catch (e) {
-      return Option.of(e.error is AppExceptions ? e.error as AppExceptions : InternalServerErrorException());
+      return Option.of(e.error is AppExceptions
+          ? e.error as AppExceptions
+          : InternalServerErrorException());
     } catch (_) {
       return Option.of(InternalServerErrorException());
     }

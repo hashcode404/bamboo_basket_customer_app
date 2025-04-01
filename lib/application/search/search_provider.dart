@@ -1,8 +1,8 @@
 import 'dart:developer';
 
-import 'package:aj_customer/application/core/base_controller.dart';
-import 'package:aj_customer/domain/store/models/product_details_model.dart';
-// import 'package:aj_customer/domain/search/model/search_model.dart';
+import 'package:bamboo_basket_customer_app/application/core/base_controller.dart';
+import 'package:bamboo_basket_customer_app/domain/store/models/product_details_model.dart';
+// import 'package:bamboo_basket_customer_app/domain/search/model/search_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
@@ -42,7 +42,6 @@ class SearchProvider extends ChangeNotifier with BaseController {
         return error;
       }, (result) async {
         _searchResponse = result;
-
       });
     } finally {
       _isSearchLoading = false;

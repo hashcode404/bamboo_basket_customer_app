@@ -1,11 +1,9 @@
 import 'package:dart_extensions/dart_extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/core/utils/ui_utils.dart';
-import 'package:aj_customer/core/utils/ui_utils.dart';
-import 'package:aj_customer/core/utils/ui_utils.dart';
+import 'package:bamboo_basket_customer_app/core/utils/ui_utils.dart';
+import 'package:bamboo_basket_customer_app/core/utils/ui_utils.dart';
+import 'package:bamboo_basket_customer_app/core/utils/ui_utils.dart';
 import 'package:shimmer/shimmer.dart';
-
-
 
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';

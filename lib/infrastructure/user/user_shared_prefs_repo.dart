@@ -1,7 +1,7 @@
-import 'package:aj_customer/core/constants/app_identifiers.dart';
-import 'package:aj_customer/domain/user/i_user_shared_prefs.dart';
-import 'package:aj_customer/domain/user/models/user_login_response.dart';
-import 'package:aj_customer/domain/user/models/user_register_response.dart';
+import 'package:bamboo_basket_customer_app/core/constants/app_identifiers.dart';
+import 'package:bamboo_basket_customer_app/domain/user/i_user_shared_prefs.dart';
+import 'package:bamboo_basket_customer_app/domain/user/models/user_login_response.dart';
+import 'package:bamboo_basket_customer_app/domain/user/models/user_register_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -37,6 +37,4 @@ class UserSharedPrefsRepo implements IUserSharedPrefsRepo {
         .then((_) => true)
         .catchError((_) => false);
   }
-
-
 }

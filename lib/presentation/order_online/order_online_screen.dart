@@ -1,17 +1,17 @@
 import 'dart:developer';
 
-import 'package:aj_customer/application/home/home_provider.dart';
-import 'package:aj_customer/core/utils/ui_utils.dart';
-import 'package:aj_customer/presentation/order_online/categories/categories_screen.dart';
+import 'package:bamboo_basket_customer_app/application/home/home_provider.dart';
+import 'package:bamboo_basket_customer_app/core/utils/ui_utils.dart';
+import 'package:bamboo_basket_customer_app/presentation/order_online/categories/categories_screen.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/application/order/order_provider.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
-import 'package:aj_customer/presentation/order_online/cart/cart_screen.dart';
-import 'package:aj_customer/presentation/order_online/home/order_online_home_screen.dart';
-import 'package:aj_customer/presentation/order_online/orders/order_history_screens.dart';
-import 'package:aj_customer/presentation/order_online/profile/profile_screen.dart';
+import 'package:bamboo_basket_customer_app/application/order/order_provider.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/presentation/order_online/cart/cart_screen.dart';
+import 'package:bamboo_basket_customer_app/presentation/order_online/home/order_online_home_screen.dart';
+import 'package:bamboo_basket_customer_app/presentation/order_online/orders/order_history_screens.dart';
+import 'package:bamboo_basket_customer_app/presentation/order_online/profile/profile_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';

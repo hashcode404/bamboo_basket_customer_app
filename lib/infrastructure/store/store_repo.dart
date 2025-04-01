@@ -1,17 +1,17 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:aj_customer/domain/store/models/product_details_pagination.dart';
-import 'package:aj_customer/domain/store/models/store_delivery_slot_model.dart';
+import 'package:bamboo_basket_customer_app/domain/store/models/product_details_pagination.dart';
+import 'package:bamboo_basket_customer_app/domain/store/models/store_delivery_slot_model.dart';
 import 'package:dio/dio.dart';
-import 'package:aj_customer/core/constants/app_identifiers.dart';
-import 'package:aj_customer/domain/store/models/product_category_model.dart';
-import 'package:aj_customer/domain/store/models/product_details_model.dart';
-import 'package:aj_customer/domain/store/models/store_settings_data_model.dart';
-import 'package:aj_customer/domain/store/models/store_timing_data_model.dart';
-import 'package:aj_customer/infrastructure/core/api_manager/api_manager.dart';
-import 'package:aj_customer/infrastructure/core/end_points/end_points.dart';
-import 'package:aj_customer/infrastructure/core/failures/app_exceptions.dart';
+import 'package:bamboo_basket_customer_app/core/constants/app_identifiers.dart';
+import 'package:bamboo_basket_customer_app/domain/store/models/product_category_model.dart';
+import 'package:bamboo_basket_customer_app/domain/store/models/product_details_model.dart';
+import 'package:bamboo_basket_customer_app/domain/store/models/store_settings_data_model.dart';
+import 'package:bamboo_basket_customer_app/domain/store/models/store_timing_data_model.dart';
+import 'package:bamboo_basket_customer_app/infrastructure/core/api_manager/api_manager.dart';
+import 'package:bamboo_basket_customer_app/infrastructure/core/end_points/end_points.dart';
+import 'package:bamboo_basket_customer_app/infrastructure/core/failures/app_exceptions.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 
@@ -29,14 +29,17 @@ class StoreRepo implements IStoreRepo {
       if (response == null) return Left(InternalServerErrorException());
       return Right(ProductCategoryModel.fromJson(response));
     } on DioException catch (e) {
-      return Left(e.error is AppExceptions ? e.error as AppExceptions : InternalServerErrorException());
+      return Left(e.error is AppExceptions
+          ? e.error as AppExceptions
+          : InternalServerErrorException());
     } catch (_) {
       return Left(InternalServerErrorException());
     }
   }
 
   @override
-  Future<Either<AppExceptions, ProductDetailsModel>> getProducts({required String categoryID}) async {
+  Future<Either<AppExceptions, ProductDetailsModel>> getProducts(
+      {required String categoryID}) async {
     try {
       final response = await APIManager.get(
         api: Endpoints.kListProductsByCategory,
@@ -46,14 +49,17 @@ class StoreRepo implements IStoreRepo {
 
       return Right(ProductDetailsModel.fromJson(response));
     } on DioException catch (e) {
-      return Left(e.error is AppExceptions ? e.error as AppExceptions : InternalServerErrorException());
+      return Left(e.error is AppExceptions
+          ? e.error as AppExceptions
+          : InternalServerErrorException());
     } catch (_) {
       return Left(InternalServerErrorException());
     }
   }
 
   @override
-  Future<Either<AppExceptions, StoreTimingDataModel>> getShopTimingDetails() async {
+  Future<Either<AppExceptions, StoreTimingDataModel>>
+      getShopTimingDetails() async {
     try {
       final response = await APIManager.get(
         api: Endpoints.kRetrieveShopTiming,
@@ -67,14 +73,17 @@ class StoreRepo implements IStoreRepo {
 
       return Right(StoreTimingDataModel.fromJson(shopTimingString));
     } on DioException catch (e) {
-      return Left(e.error is AppExceptions ? e.error as AppExceptions : InternalServerErrorException());
+      return Left(e.error is AppExceptions
+          ? e.error as AppExceptions
+          : InternalServerErrorException());
     } catch (_) {
       return Left(InternalServerErrorException());
     }
   }
 
   @override
-  Future<Either<AppExceptions, StoreSettingsDataModel>> getStoreSettings() async {
+  Future<Either<AppExceptions, StoreSettingsDataModel>>
+      getStoreSettings() async {
     try {
       final response = await APIManager.get(
         api: Endpoints.kRetrieveShopSettings,
@@ -83,27 +92,34 @@ class StoreRepo implements IStoreRepo {
       if (response == null) return Left(InternalServerErrorException());
       return Right(StoreSettingsDataModel.fromJson(response));
     } on DioException catch (e) {
-      return Left(e.error is AppExceptions ? e.error as AppExceptions : InternalServerErrorException());
+      return Left(e.error is AppExceptions
+          ? e.error as AppExceptions
+          : InternalServerErrorException());
     } catch (_) {
       return Left(InternalServerErrorException());
     }
   }
 
   @override
-  Future<Either<AppExceptions, StoreDeliverySlotModel>> getStoreDeliverySlots() async {
+  Future<Either<AppExceptions, StoreDeliverySlotModel>>
+      getStoreDeliverySlots() async {
     try {
-      final response = await APIManager.get(api: Endpoints.kShopDeliverySlots, params: AppIdentifiers.kShopId);
+      final response = await APIManager.get(
+          api: Endpoints.kShopDeliverySlots, params: AppIdentifiers.kShopId);
       if (response == null) return Left(InternalServerErrorException());
       return Right(StoreDeliverySlotModel.fromJson(response));
     } on DioException catch (e) {
-      return Left(e.error is AppExceptions ? e.error as AppExceptions : InternalServerErrorException());
+      return Left(e.error is AppExceptions
+          ? e.error as AppExceptions
+          : InternalServerErrorException());
     } catch (_) {
       return Left(InternalServerErrorException());
     }
   }
 
   @override
-  Future<Either<AppExceptions, ProductDetailsPagination>> getProductsByPagination({
+  Future<Either<AppExceptions, ProductDetailsPagination>>
+      getProductsByPagination({
     required String categoryID,
     required String numberOfProducts,
   }) async {
@@ -121,7 +137,9 @@ class StoreRepo implements IStoreRepo {
       if (response == null) return Left(InternalServerErrorException());
       return Right(ProductDetailsPagination.fromJson(response));
     } on DioException catch (e) {
-      return Left(e.error is AppExceptions ? e.error as AppExceptions : InternalServerErrorException());
+      return Left(e.error is AppExceptions
+          ? e.error as AppExceptions
+          : InternalServerErrorException());
     } catch (_) {
       return Left(InternalServerErrorException());
     }

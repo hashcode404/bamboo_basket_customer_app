@@ -4,8 +4,8 @@ import 'dart:developer';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:aj_customer/core/constants/app_identifiers.dart';
-import 'package:aj_customer/domain/user/i_user_repo.dart';
+import 'package:bamboo_basket_customer_app/core/constants/app_identifiers.dart';
+import 'package:bamboo_basket_customer_app/domain/user/i_user_repo.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../core/utils/alert_dialogs.dart';
@@ -305,7 +305,7 @@ class AuthProvider extends ChangeNotifier with BaseController {
     } finally {
       _resetLoading = false;
       _resetLoadingSecondary = false;
-      
+
       notifyListeners();
     }
   }
@@ -366,9 +366,7 @@ class AuthProvider extends ChangeNotifier with BaseController {
     }
   }
 
-  void clearResetFormValues(){
-    
-  }
+  void clearResetFormValues() {}
 
   void disposeController() {
     loginUserNameController.dispose();

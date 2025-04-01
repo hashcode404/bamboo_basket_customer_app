@@ -2,14 +2,14 @@ import 'dart:developer' as dev;
 import 'dart:isolate';
 import 'dart:math';
 
-import 'package:aj_customer/infrastructure/store/store_repo.dart';
+import 'package:bamboo_basket_customer_app/infrastructure/store/store_repo.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/application/core/api_response.dart';
-import 'package:aj_customer/application/core/base_controller.dart';
-import 'package:aj_customer/domain/store/i_store_repo.dart';
-import 'package:aj_customer/domain/store/models/product_category_model.dart';
+import 'package:bamboo_basket_customer_app/application/core/api_response.dart';
+import 'package:bamboo_basket_customer_app/application/core/base_controller.dart';
+import 'package:bamboo_basket_customer_app/domain/store/i_store_repo.dart';
+import 'package:bamboo_basket_customer_app/domain/store/models/product_category_model.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../domain/store/models/product_details_model.dart';
@@ -106,7 +106,7 @@ class ProductsProvider extends ChangeNotifier with BaseController {
         exception: error,
       );
       notifyListeners();
-    }, (result){
+    }, (result) {
       dev.log(result.items.length.toString(), name: "productsListLength");
       // print('Response data: ${result.items}');
       // List<ProductDataModel> products = await Future.wait(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
 
 import '../../core/theme/app_colors.dart';
 

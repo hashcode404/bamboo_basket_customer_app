@@ -1,12 +1,12 @@
-import 'package:aj_customer/application/home/home_provider.dart';
-import 'package:aj_customer/application/promotion/promotions_provider.dart';
-import 'package:aj_customer/application/search/search_provider.dart';
+import 'package:bamboo_basket_customer_app/application/home/home_provider.dart';
+import 'package:bamboo_basket_customer_app/application/promotion/promotions_provider.dart';
+import 'package:bamboo_basket_customer_app/application/search/search_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/application/auth/auth_provider.dart';
-import 'package:aj_customer/application/core/time_dropdown_provider.dart';
-import 'package:aj_customer/application/notification/notification_provider.dart';
-import 'package:aj_customer/application/shop/shop_provider.dart';
-import 'package:aj_customer/domain/dependency_injection/injection_config.dart';
+import 'package:bamboo_basket_customer_app/application/auth/auth_provider.dart';
+import 'package:bamboo_basket_customer_app/application/core/time_dropdown_provider.dart';
+import 'package:bamboo_basket_customer_app/application/notification/notification_provider.dart';
+import 'package:bamboo_basket_customer_app/application/shop/shop_provider.dart';
+import 'package:bamboo_basket_customer_app/domain/dependency_injection/injection_config.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 

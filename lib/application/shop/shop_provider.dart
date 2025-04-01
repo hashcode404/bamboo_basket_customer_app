@@ -1,12 +1,12 @@
 import 'dart:developer';
 
-import 'package:aj_customer/core/utils/alert_dialogs.dart';
-import 'package:aj_customer/domain/store/models/store_delivery_slot_model.dart';
+import 'package:bamboo_basket_customer_app/core/utils/alert_dialogs.dart';
+import 'package:bamboo_basket_customer_app/domain/store/models/store_delivery_slot_model.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/application/core/api_response.dart';
-import 'package:aj_customer/application/core/base_controller.dart';
-import 'package:aj_customer/domain/store/i_store_repo.dart';
-import 'package:aj_customer/domain/store/models/store_timing_data_model.dart';
+import 'package:bamboo_basket_customer_app/application/core/api_response.dart';
+import 'package:bamboo_basket_customer_app/application/core/base_controller.dart';
+import 'package:bamboo_basket_customer_app/domain/store/i_store_repo.dart';
+import 'package:bamboo_basket_customer_app/domain/store/models/store_timing_data_model.dart';
 
 import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
@@ -121,8 +121,6 @@ class ShopProvider extends ChangeNotifier with BaseController {
     _selectedDeliverySlot = null;
     notifyListeners();
   }
-
- 
 
   void onChangeSelectedDate(DateTime date) {
     _selectedDate = date;

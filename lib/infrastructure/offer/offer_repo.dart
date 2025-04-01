@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:aj_customer/core/constants/app_identifiers.dart';
-import 'package:aj_customer/domain/offer/models/offer_details_model.dart';
-import 'package:aj_customer/domain/offer/models/validated_coupon_details.dart';
-import 'package:aj_customer/infrastructure/core/failures/app_exceptions.dart';
+import 'package:bamboo_basket_customer_app/core/constants/app_identifiers.dart';
+import 'package:bamboo_basket_customer_app/domain/offer/models/offer_details_model.dart';
+import 'package:bamboo_basket_customer_app/domain/offer/models/validated_coupon_details.dart';
+import 'package:bamboo_basket_customer_app/infrastructure/core/failures/app_exceptions.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 
@@ -24,20 +24,24 @@ class OfferRepo implements IOfferRepo {
 
       if (response == null) return Left(InternalServerErrorException());
 
-      final rawOfferList = (jsonDecode(response)?["offerCodeList"] ?? []) as List<dynamic>;
+      final rawOfferList =
+          (jsonDecode(response)?["offerCodeList"] ?? []) as List<dynamic>;
 
       return Right(
         rawOfferList.map((e) => OfferDetailsModel.fromJson(e)).toList(),
       );
     } on DioException catch (e) {
-      return Left(e.error is AppExceptions ? e.error as AppExceptions : InternalServerErrorException());
+      return Left(e.error is AppExceptions
+          ? e.error as AppExceptions
+          : InternalServerErrorException());
     } catch (_) {
       return Left(InternalServerErrorException());
     }
   }
 
   @override
-  Future<Either<AppExceptions, ValidatedCouponDetails>> validateCouponCode(String coupenId) async {
+  Future<Either<AppExceptions, ValidatedCouponDetails>> validateCouponCode(
+      String coupenId) async {
     try {
       final response = await APIManager.post(
         api: Endpoints.kValidateCouponCode,
@@ -55,7 +59,9 @@ class OfferRepo implements IOfferRepo {
         ),
       );
     } on DioException catch (e) {
-      return Left(e.error is AppExceptions ? e.error as AppExceptions : InternalServerErrorException());
+      return Left(e.error is AppExceptions
+          ? e.error as AppExceptions
+          : InternalServerErrorException());
     }
   }
 }

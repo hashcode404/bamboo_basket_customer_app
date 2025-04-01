@@ -1,8 +1,8 @@
 import 'dart:developer';
 
-import 'package:aj_customer/application/core/api_response.dart';
-import 'package:aj_customer/application/core/base_controller.dart';
-import 'package:aj_customer/domain/promotion/models/promotions_model.dart';
+import 'package:bamboo_basket_customer_app/application/core/api_response.dart';
+import 'package:bamboo_basket_customer_app/application/core/base_controller.dart';
+import 'package:bamboo_basket_customer_app/domain/promotion/models/promotions_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -84,7 +84,7 @@ class PromotionsProvider extends ChangeNotifier with BaseController {
   }
 
   void showPosterDialogue() {
-   if (_showDialogue) {
+    if (_showDialogue) {
       _showDialogue = false;
       notifyListeners();
     }

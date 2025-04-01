@@ -1,9 +1,9 @@
-import 'package:aj_customer/application/shop/shop_provider.dart';
-import 'package:aj_customer/core/routes/routes.gr.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
-import 'package:aj_customer/core/utils/alert_dialogs.dart';
-import 'package:aj_customer/domain/user/models/user_address_list_data_model.dart';
-import 'package:aj_customer/presentation/widgets/custom_close_icon.dart';
+import 'package:bamboo_basket_customer_app/application/shop/shop_provider.dart';
+import 'package:bamboo_basket_customer_app/core/routes/routes.gr.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/core/utils/alert_dialogs.dart';
+import 'package:bamboo_basket_customer_app/domain/user/models/user_address_list_data_model.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/custom_close_icon.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:dart_extensions/dart_extensions.dart';
 import 'package:dartx/dartx.dart';

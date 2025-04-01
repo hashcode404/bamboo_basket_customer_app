@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:aj_customer/application/products/products_provider.dart';
-import 'package:aj_customer/domain/store/models/product_details_model.dart';
-import 'package:aj_customer/presentation/widgets/manage_dish_sheets.dart';
-import 'package:aj_customer/presentation/widgets/product_details_tile.dart';
+import 'package:bamboo_basket_customer_app/application/products/products_provider.dart';
+import 'package:bamboo_basket_customer_app/domain/store/models/product_details_model.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/manage_dish_sheets.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/product_details_tile.dart';
 import 'package:injectable/injectable.dart';
 import 'package:provider/provider.dart';
-import 'package:aj_customer/application/cart/cart_provider.dart';
+import 'package:bamboo_basket_customer_app/application/cart/cart_provider.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
   @override
@@ -36,7 +36,8 @@ class CustomSearchDelegate extends SearchDelegate {
     return Consumer<ProductsProvider>(
       builder: (context, productProvider, child) {
         final results = productProvider.productsList
-            .where((item) => item.name!.toLowerCase().contains(query.toLowerCase()))
+            .where((item) =>
+                item.name!.toLowerCase().contains(query.toLowerCase()))
             .toList();
 
         if (results.isEmpty) {
@@ -64,7 +65,8 @@ class CustomSearchDelegate extends SearchDelegate {
     return Consumer<ProductsProvider>(
       builder: (context, productProvider, child) {
         final datas = productProvider.productsList
-            .where((item) => item.name!.toLowerCase().contains(query.toLowerCase()))
+            .where((item) =>
+                item.name!.toLowerCase().contains(query.toLowerCase()))
             .toList();
 
         return ListView.builder(
@@ -90,7 +92,8 @@ class CustomSearchDelegate extends SearchDelegate {
     );
   }
 
-  void showItemDetailsBottomSheet(ProductDataModel product, BuildContext context) {
+  void showItemDetailsBottomSheet(
+      ProductDataModel product, BuildContext context) {
     showModalBottomSheet(
         context: context,
         isScrollControlled: true,

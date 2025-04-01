@@ -1,5 +1,5 @@
-import 'package:aj_customer/application/shop/shop_provider.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/application/shop/shop_provider.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dartx/dartx.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';

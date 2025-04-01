@@ -1,26 +1,26 @@
 import 'dart:developer';
 
-import 'package:aj_customer/application/payment/payment_provider.dart';
-import 'package:aj_customer/core/utils/alert_dialogs.dart';
+import 'package:bamboo_basket_customer_app/application/payment/payment_provider.dart';
+import 'package:bamboo_basket_customer_app/core/utils/alert_dialogs.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:aj_customer/application/shop/shop_provider.dart';
+import 'package:bamboo_basket_customer_app/application/shop/shop_provider.dart';
 import 'package:dart_extensions/dart_extensions.dart';
 import 'package:dartx/dartx.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:aj_customer/core/theme/app_theme.dart';
-import 'package:aj_customer/core/utils/date_utils.dart';
+import 'package:bamboo_basket_customer_app/core/theme/app_theme.dart';
+import 'package:bamboo_basket_customer_app/core/utils/date_utils.dart';
 import '../../../application/order/order_provider.dart';
 import '../../../core/routes/routes.gr.dart';
 import '../../../core/utils/utils.dart';
 import '../../../gen/assets.gen.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:aj_customer/application/cart/cart_provider.dart';
-import 'package:aj_customer/application/user/user_provider.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
-import 'package:aj_customer/core/utils/ui_utils.dart';
-import 'package:aj_customer/presentation/widgets/bottom_sheet_drag_handler.dart';
-import 'package:aj_customer/presentation/widgets/custom_close_icon.dart';
+import 'package:bamboo_basket_customer_app/application/cart/cart_provider.dart';
+import 'package:bamboo_basket_customer_app/application/user/user_provider.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/core/utils/ui_utils.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/bottom_sheet_drag_handler.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/custom_close_icon.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 

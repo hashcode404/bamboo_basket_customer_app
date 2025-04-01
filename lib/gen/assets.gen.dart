@@ -118,6 +118,14 @@ class $AssetsImagesGen {
   /// File path: assets/images/1.png
   AssetGenImage get a1 => const AssetGenImage('assets/images/1.png');
 
+  /// File path: assets/images/BambooBasket LoginLogo.png
+  AssetGenImage get bambooBasketLoginLogo =>
+      const AssetGenImage('assets/images/BambooBasket LoginLogo.png');
+
+  /// File path: assets/images/BambooBasketWhite.png
+  AssetGenImage get bambooBasketWhite =>
+      const AssetGenImage('assets/images/BambooBasketWhite.png');
+
   /// File path: assets/images/Group 1000003922.svg
   SvgGenImage get group1000003922 =>
       const SvgGenImage('assets/images/Group 1000003922.svg');
@@ -141,8 +149,24 @@ class $AssetsImagesGen {
   AssetGenImage get ajBanner03 =>
       const AssetGenImage('assets/images/ajBanner03.png');
 
-  /// File path: assets/images/aj_logo.png
-  AssetGenImage get ajLogo => const AssetGenImage('assets/images/aj_logo.png');
+  /// File path: assets/images/auth_background.png
+  AssetGenImage get authBackground =>
+      const AssetGenImage('assets/images/auth_background.png');
+
+  /// File path: assets/images/auth_bg.png
+  AssetGenImage get authBg => const AssetGenImage('assets/images/auth_bg.png');
+
+  /// File path: assets/images/bambooBasketTextLogo.png
+  AssetGenImage get bambooBasketTextLogo =>
+      const AssetGenImage('assets/images/bambooBasketTextLogo.png');
+
+  /// File path: assets/images/bamboobasketIconWhite.png
+  AssetGenImage get bamboobasketIconWhite =>
+      const AssetGenImage('assets/images/bamboobasketIconWhite.png');
+
+  /// File path: assets/images/banner_04.png
+  AssetGenImage get banner04 =>
+      const AssetGenImage('assets/images/banner_04.png');
 
   /// File path: assets/images/bg01.png
   AssetGenImage get bg01 => const AssetGenImage('assets/images/bg01.png');
@@ -247,6 +271,10 @@ class $AssetsImagesGen {
   AssetGenImage get sliderTwo =>
       const AssetGenImage('assets/images/slider_two.png');
 
+  /// File path: assets/images/splash_bg.png
+  AssetGenImage get splashBg =>
+      const AssetGenImage('assets/images/splash_bg.png');
+
   /// File path: assets/images/success01.png
   AssetGenImage get success01 =>
       const AssetGenImage('assets/images/success01.png');
@@ -269,16 +297,26 @@ class $AssetsImagesGen {
   /// File path: assets/images/welcome.png
   AssetGenImage get welcome => const AssetGenImage('assets/images/welcome.png');
 
+  /// File path: assets/images/welocome_bg_03.png
+  AssetGenImage get welocomeBg03 =>
+      const AssetGenImage('assets/images/welocome_bg_03.png');
+
   /// List of all assets
   List<dynamic> get values => [
         a1,
+        bambooBasketLoginLogo,
+        bambooBasketWhite,
         group1000003922,
         pattern,
         profileCircle,
         ajBanner01,
         ajBanner02,
         ajBanner03,
-        ajLogo,
+        authBackground,
+        authBg,
+        bambooBasketTextLogo,
+        bamboobasketIconWhite,
+        banner04,
         bg01,
         bg02,
         bstoptbanner1,
@@ -307,12 +345,14 @@ class $AssetsImagesGen {
         signInImg,
         sliderOne,
         sliderTwo,
+        splashBg,
         success01,
         success02,
         tableHistory,
         takeAway,
         user,
-        welcome
+        welcome,
+        welocomeBg03
       ];
 }
 

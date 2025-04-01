@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_button/flutter_swipe_button.dart';
-import 'package:aj_customer/core/theme/app_colors.dart';
+import 'package:bamboo_basket_customer_app/core/theme/app_colors.dart';
 
 class CustomSwipeButton extends StatelessWidget {
   const CustomSwipeButton({super.key});

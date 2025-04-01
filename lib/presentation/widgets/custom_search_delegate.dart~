@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:aj_customer/application/products/products_provider.dart';
-import 'package:aj_customer/domain/store/models/product_details_model.dart';
-import 'package:aj_customer/presentation/widgets/dish_detail_bottom_sheet.dart';
-import 'package:aj_customer/presentation/widgets/product_details_tile.dart';
+import 'package:bamboo_basket_customer_app/application/products/products_provider.dart';
+import 'package:bamboo_basket_customer_app/domain/store/models/product_details_model.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/dish_detail_bottom_sheet.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/product_details_tile.dart';
 import 'package:injectable/injectable.dart';
 import 'package:provider/provider.dart';
-import 'package:aj_customer/application/cart/cart_provider.dart';
+import 'package:bamboo_basket_customer_app/application/cart/cart_provider.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
   @override

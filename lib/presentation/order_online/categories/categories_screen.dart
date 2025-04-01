@@ -1,13 +1,13 @@
 import 'dart:developer';
 
-import 'package:aj_customer/application/core/api_response.dart';
-import 'package:aj_customer/application/products/products_provider.dart';
-import 'package:aj_customer/core/theme/app_colors.dart';
-import 'package:aj_customer/core/theme/custom_text_styles.dart';
-import 'package:aj_customer/core/utils/ui_utils.dart';
-import 'package:aj_customer/gen/assets.gen.dart';
-import 'package:aj_customer/presentation/widgets/product_details_tile.dart';
-import 'package:aj_customer/presentation/widgets/shimmer_product_details_tile.dart';
+import 'package:bamboo_basket_customer_app/application/core/api_response.dart';
+import 'package:bamboo_basket_customer_app/application/products/products_provider.dart';
+import 'package:bamboo_basket_customer_app/core/theme/app_colors.dart';
+import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
+import 'package:bamboo_basket_customer_app/core/utils/ui_utils.dart';
+import 'package:bamboo_basket_customer_app/gen/assets.gen.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/product_details_tile.dart';
+import 'package:bamboo_basket_customer_app/presentation/widgets/shimmer_product_details_tile.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
