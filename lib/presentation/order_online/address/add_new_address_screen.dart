@@ -203,9 +203,17 @@ class AddNewAddressScreen extends GetProviderView<UserProvider> {
                 if (done) {
                   userProvider.getAddressList();
                   // ignore: use_build_context_synchronously
+                  if (isFromProfieView) {
+                    // ignore: use_build_context_synchronously
+                    Navigator.pop(context);
+                    return;
+                  }
+                  // ignore: use_build_context_synchronously
                   Navigator.pop(context);
                   // ignore: use_build_context_synchronously
                   Navigator.pop(context);
+                  // ignore: use_build_context_synchronously
+                  // Navigator.pop(context);
 
                   userProvider.clearAddressForm();
                 }

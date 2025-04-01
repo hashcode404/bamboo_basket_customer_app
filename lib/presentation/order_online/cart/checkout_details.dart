@@ -171,24 +171,24 @@ class CheckoutDetailsScreen extends StatelessWidget {
               ],
             ),
           ),
-          Text("Delivery Date & Time",
-              style: context.customTextTheme.text16W600),
-          verticalSpaceTiny,
-          Text(
-            shopListener.formattedSelectedDate,
-            style: context.customTextTheme.text16W500,
-          ),
-          verticalSpaceTiny,
-          shopListener.selectedDeliverySlot != null
-              ? Text(
-                  "${shopListener.selectedDeliverySlot?.openingTime} - ${shopListener.selectedDeliverySlot?.closingTime}",
-                  style: context.customTextTheme.text14W600,
-                )
-              : Text(
-                  'Empty',
-                  style: context.customTextTheme.text14W400,
-                ),
-          verticalSpaceRegular,
+          // Text("Delivery Date & Time",
+          //     style: context.customTextTheme.text16W600),
+          // verticalSpaceTiny,
+          // Text(
+          //   shopListener.formattedSelectedDate,
+          //   style: context.customTextTheme.text16W500,
+          // ),
+          // verticalSpaceTiny,
+          // shopListener.selectedDeliverySlot != null
+          //     ? Text(
+          //         "${shopListener.selectedDeliverySlot?.openingTime} - ${shopListener.selectedDeliverySlot?.closingTime}",
+          //         style: context.customTextTheme.text14W600,
+          //       )
+          //     : Text(
+          //         'Empty',
+          //         style: context.customTextTheme.text14W400,
+          //       ),
+          // verticalSpaceRegular,
           Text(
               cartListener.selectedOrderType == OrderType.delivery
                   ? "Delivery Address"

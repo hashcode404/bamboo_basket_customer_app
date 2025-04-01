@@ -318,18 +318,18 @@ class _CartScreenState extends State<CartScreen>
                                     context: context);
                                 return;
                               }
-                              if (shopListener.selectedDate == null) {
-                                AlertDialogs.showError(
-                                    "Please select an delivery date",
-                                    context: context);
-                                return;
-                              }
-                              if (shopListener.selectedDeliverySlot == null) {
-                                AlertDialogs.showError(
-                                    "Please select an delivery time",
-                                    context: context);
-                                return;
-                              }
+                              // if (shopListener.selectedDate == null) {
+                              //   AlertDialogs.showError(
+                              //       "Please select an delivery date",
+                              //       context: context);
+                              //   return;
+                              // }
+                              // if (shopListener.selectedDeliverySlot == null) {
+                              //   AlertDialogs.showError(
+                              //       "Please select an delivery time",
+                              //       context: context);
+                              //   return;
+                              // }
                               cartProvider.jumpToPage(2);
                             },
                             child: Container(

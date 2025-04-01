@@ -282,129 +282,129 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
               ),
 
             verticalSpaceSmall,
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 16.0,
-                horizontal: 0.0,
-              ),
-              child: shopListener.selectedDate == null &&
-                      shopListener.selectedDeliverySlot == null
-                  ? InkWell(
-                      onTap: () async {
-                        shopProvider.onChangeOnSelectedDeliverySlot(null);
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(
+            //     vertical: 16.0,
+            //     horizontal: 0.0,
+            //   ),
+            //   child: shopListener.selectedDate == null &&
+            //           shopListener.selectedDeliverySlot == null
+            //       ? InkWell(
+            //           onTap: () async {
+            //             shopProvider.onChangeOnSelectedDeliverySlot(null);
 
-                        shopProvider.fetchShopDeliverySlots();
+            //             shopProvider.fetchShopDeliverySlots();
 
-                        final selectedDate = await showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime.now(),
-                          lastDate: DateTime(2100),
-                          builder: (context, child) {
-                            return Theme(
-                              data: Theme.of(context).copyWith(
-                                colorScheme: const ColorScheme.light(
-                                  primary: AppColors.kPrimaryColor,
-                                ),
-                              ),
-                              child: child!,
-                            );
-                          },
-                        );
-                        if (selectedDate != null) {
-                          shopProvider.onChangeSelectedDate(selectedDate);
-                          await showSlotChooseSheet(context, shopProvider);
-                        }
-                      },
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const Icon(FluentIcons.calendar_clock_24_regular),
-                          const SizedBox(width: 8.0),
-                          // Add space between icon and text
-                          Flexible(
-                            child: Text(
-                              "Select Delivery Date & Time",
-                              style: context.customTextTheme.text16W600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  : Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Icon(FluentIcons.calendar_clock_24_regular),
-                            horizontalSpaceSmall,
-                            // Text(
-                            //     '${DateFormat.jm(shopListener.selectedDate)}'),
+            //             final selectedDate = await showDatePicker(
+            //               context: context,
+            //               initialDate: DateTime.now(),
+            //               firstDate: DateTime.now(),
+            //               lastDate: DateTime(2100),
+            //               builder: (context, child) {
+            //                 return Theme(
+            //                   data: Theme.of(context).copyWith(
+            //                     colorScheme: const ColorScheme.light(
+            //                       primary: AppColors.kPrimaryColor,
+            //                     ),
+            //                   ),
+            //                   child: child!,
+            //                 );
+            //               },
+            //             );
+            //             if (selectedDate != null) {
+            //               shopProvider.onChangeSelectedDate(selectedDate);
+            //               await showSlotChooseSheet(context, shopProvider);
+            //             }
+            //           },
+            //           child: Row(
+            //             mainAxisSize: MainAxisSize.min,
+            //             mainAxisAlignment: MainAxisAlignment.start,
+            //             children: [
+            //               const Icon(FluentIcons.calendar_clock_24_regular),
+            //               const SizedBox(width: 8.0),
+            //               // Add space between icon and text
+            //               Flexible(
+            //                 child: Text(
+            //                   "Select Delivery Date & Time",
+            //                   style: context.customTextTheme.text16W600,
+            //                 ),
+            //               ),
+            //             ],
+            //           ),
+            //         )
+            //       : Row(
+            //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //           crossAxisAlignment: CrossAxisAlignment.start,
+            //           children: [
+            //             Row(
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               children: [
+            //                 const Icon(FluentIcons.calendar_clock_24_regular),
+            //                 horizontalSpaceSmall,
+            //                 // Text(
+            //                 //     '${DateFormat.jm(shopListener.selectedDate)}'),
 
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Delivery Date & Time',
-                                  style: context.customTextTheme.text16W700,
-                                ),
-                                Text(
-                                  shopListener.formattedSelectedDate,
-                                  style: context.customTextTheme.text16W500,
-                                ),
-                                verticalSpaceTiny,
-                                shopListener.selectedDeliverySlot != null
-                                    ? Text(
-                                        "${shopListener.selectedDeliverySlot?.openingTime} - ${shopListener.selectedDeliverySlot?.closingTime}",
-                                        style:
-                                            context.customTextTheme.text14W600,
-                                      )
-                                    : Text(
-                                        'Not Selected',
-                                        style: context
-                                            .customTextTheme.text14W400
-                                            .copyWith(
-                                                color: Colors.red.shade700),
-                                      ),
-                              ],
-                            )
-                          ],
-                        ),
-                        InkWell(
-                            onTap: () async {
-                              shopProvider.onChangeOnSelectedDeliverySlot(null);
-                              shopProvider.fetchShopDeliverySlots();
+            //                 Column(
+            //                   crossAxisAlignment: CrossAxisAlignment.start,
+            //                   children: [
+            //                     Text(
+            //                       'Delivery Date & Time',
+            //                       style: context.customTextTheme.text16W700,
+            //                     ),
+            //                     Text(
+            //                       shopListener.formattedSelectedDate,
+            //                       style: context.customTextTheme.text16W500,
+            //                     ),
+            //                     verticalSpaceTiny,
+            //                     shopListener.selectedDeliverySlot != null
+            //                         ? Text(
+            //                             "${shopListener.selectedDeliverySlot?.openingTime} - ${shopListener.selectedDeliverySlot?.closingTime}",
+            //                             style:
+            //                                 context.customTextTheme.text14W600,
+            //                           )
+            //                         : Text(
+            //                             'Not Selected',
+            //                             style: context
+            //                                 .customTextTheme.text14W400
+            //                                 .copyWith(
+            //                                     color: Colors.red.shade700),
+            //                           ),
+            //                   ],
+            //                 )
+            //               ],
+            //             ),
+            //             InkWell(
+            //                 onTap: () async {
+            //                   shopProvider.onChangeOnSelectedDeliverySlot(null);
+            //                   shopProvider.fetchShopDeliverySlots();
 
-                              final selectedDate = await showDatePicker(
-                                context: context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime.now(),
-                                lastDate: DateTime(2100),
-                                builder: (context, child) {
-                                  return Theme(
-                                    data: Theme.of(context).copyWith(
-                                      colorScheme: const ColorScheme.light(
-                                        primary: AppColors.kPrimaryColor,
-                                      ),
-                                    ),
-                                    child: child!,
-                                  );
-                                },
-                              );
-                              if (selectedDate != null) {
-                                shopProvider.onChangeSelectedDate(selectedDate);
-                                await showSlotChooseSheet(
-                                    context, shopProvider);
-                              }
-                            },
-                            child: Text('CHANGE',
-                                style: context.customTextTheme.text14W600)),
-                      ],
-                    ),
-            ),
+            //                   final selectedDate = await showDatePicker(
+            //                     context: context,
+            //                     initialDate: DateTime.now(),
+            //                     firstDate: DateTime.now(),
+            //                     lastDate: DateTime(2100),
+            //                     builder: (context, child) {
+            //                       return Theme(
+            //                         data: Theme.of(context).copyWith(
+            //                           colorScheme: const ColorScheme.light(
+            //                             primary: AppColors.kPrimaryColor,
+            //                           ),
+            //                         ),
+            //                         child: child!,
+            //                       );
+            //                     },
+            //                   );
+            //                   if (selectedDate != null) {
+            //                     shopProvider.onChangeSelectedDate(selectedDate);
+            //                     await showSlotChooseSheet(
+            //                         context, shopProvider);
+            //                   }
+            //                 },
+            //                 child: Text('CHANGE',
+            //                     style: context.customTextTheme.text14W600)),
+            //           ],
+            //         ),
+            // ),
             Card(
               child: Padding(
                 padding: const EdgeInsets.symmetric(
