@@ -278,60 +278,11 @@ class _OrderOnlineHomeScreenState extends State<OrderOnlineHomeScreen>
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Deals 🔥",
-                style: context.customTextTheme.text16W600,
-              ),
-              horizontalSpaceSmall,
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
-                decoration: BoxDecoration(
-                  color: AppColors.kPrimaryColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                  child: Text(
-                    listOfItems[0],
-                    style: context.customTextTheme.text14W400
-                        .copyWith(color: AppColors.kWhite),
-                  ),
-                ),
-              ),
-              horizontalSpaceSmall,
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
-                decoration: BoxDecoration(
-                  // color: AppColors.kGray3,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                  child: Text(
-                    listOfItems[1],
-                    style: context.customTextTheme.text14W400
-                        .copyWith(color: AppColors.kBlack),
-                  ),
-                ),
-              ),
-              horizontalSpaceSmall,
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
-                decoration: BoxDecoration(
-                  // color: AppColors.kGray3,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                  child: Text(
-                    listOfItems[2],
-                    style: context.customTextTheme.text14W400
-                        .copyWith(color: AppColors.kBlack),
-                  ),
-                ),
-              ),
-            ],
+          Text(
+            "Deals 🔥",
+            style: context.customTextTheme.text16W600,
           ),
           verticalSpaceRegular,
           productListener.productsListAPIResponse.status ==

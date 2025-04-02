@@ -59,6 +59,8 @@ class ProductsProvider extends ChangeNotifier with BaseController {
   //   notifyListeners();
   // }
 
+  Map<String, List<ProductDataModel>> _cachedProducts = {}; // Cache storage
+
   @override
   Future<void> init() async {
     await getAllProductsByPagination();
@@ -96,28 +98,54 @@ class ProductsProvider extends ChangeNotifier with BaseController {
     });
   }
 
+  // Future<void> getAllProducts(String categoryID) async {
+  //   _productsListAPIResponse = APIResponse.loading();
+  //   notifyListeners();
+  //   final response = await storeRepo.getProducts(categoryID: categoryID);
+  //   response.fold((error) {
+  //     _productsListAPIResponse = APIResponse.error(
+  //       error.message,
+  //       exception: error,
+  //     );
+  //     notifyListeners();
+  //   }, (result) {
+  //     dev.log(result.items.length.toString(), name: "productsListLength");
+  //     // print('Response data: ${result.items}');
+  //     // List<ProductDataModel> products = await Future.wait(
+  //     //   result.items.map(
+  //     //     (product) async => product.copyWith(
+  //     //       scheme: await getSchemeFromImage(product.photo),
+  //     //     ),
+  //     //   ),
+  //     // );
+  //     _productsListAPIResponse = APIResponse.completed(result.items);
+  //     _productsCollection = result.items;
+  //     notifyListeners();
+  //   });
+  // }
+
   Future<void> getAllProducts(String categoryID) async {
+
+    if (_cachedProducts.containsKey(categoryID)) {
+      _productsCollection = _cachedProducts[categoryID]!;
+      _productsListAPIResponse = APIResponse.completed(_productsCollection);
+      notifyListeners();
+      return;
+    }
+
+  
     _productsListAPIResponse = APIResponse.loading();
     notifyListeners();
+
     final response = await storeRepo.getProducts(categoryID: categoryID);
     response.fold((error) {
-      _productsListAPIResponse = APIResponse.error(
-        error.message,
-        exception: error,
-      );
+      _productsListAPIResponse =
+          APIResponse.error(error.message, exception: error);
       notifyListeners();
     }, (result) {
-      dev.log(result.items.length.toString(), name: "productsListLength");
-      // print('Response data: ${result.items}');
-      // List<ProductDataModel> products = await Future.wait(
-      //   result.items.map(
-      //     (product) async => product.copyWith(
-      //       scheme: await getSchemeFromImage(product.photo),
-      //     ),
-      //   ),
-      // );
-      _productsListAPIResponse = APIResponse.completed(result.items);
+      _cachedProducts[categoryID] = result.items; 
       _productsCollection = result.items;
+      _productsListAPIResponse = APIResponse.completed(result.items);
       notifyListeners();
     });
   }
