@@ -580,18 +580,20 @@ class AddToCartButton extends GetProviderView<CartProvider> {
     final cartProvider = notifier(context);
     final cartListener = listener(context);
     return FilledButton(
-        onPressed: () {
-          final validationResult =
-              cartProvider.validateRequiredModifiers(product);
-          if (validationResult) {
-            cartProvider.addItemToCart().then((added) {
-              if (added) {
-                Navigator.pop(context);
-                cartProvider.resetValues();
-              }
-            });
-          }
-        },
+        onPressed: cartListener.addItemLoading
+            ? null
+            : () {
+                final validationResult =
+                    cartProvider.validateRequiredModifiers(product);
+                if (validationResult) {
+                  cartProvider.addItemToCart().then((added) {
+                    if (added) {
+                      Navigator.pop(context);
+                      cartProvider.resetValues();
+                    }
+                  });
+                }
+              },
         child: !cartListener.addItemLoading
             ? const Row(
                 mainAxisAlignment: MainAxisAlignment.center,

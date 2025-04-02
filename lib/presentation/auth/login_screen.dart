@@ -217,15 +217,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 verticalSpaceSmall,
                 InkWell(
                   onTap: () {
+                    if (authListener.loginLoading) {
+                      return;
+                    }
                     final validated = authProvider.validateLoginForm();
                     if (validated) {
                       authProvider.loginUser().then((logged) async {
                         if (logged) {
                           AlertDialogs.showSuccess("Login successfully!");
                           homeProvider.onChangeCurrentPage(0);
-                          
-                           DependencyRegistrar.initializeAllProviders(
-                              context);
+
+                          DependencyRegistrar.initializeAllProviders(context);
                           await Future.delayed(const Duration(seconds: 1), () {
                             // ignore: use_build_context_synchronously
                             context.router.replaceAll([
@@ -446,54 +448,59 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 if (authListener.currentRegForm == 2) verticalSpaceSmall,
                 InkWell(
-                  onTap: () async {
-                    bool validated = false;
-                    if (authListener.currentRegForm == 0) {
-                      validated = authProvider.validateRegisterForm1();
-                      if (validated) {
-                        authProvider.updateCurrentRegForm(1);
-                      }
-                    } else if (authListener.currentRegForm == 1) {
-                      validated = authProvider.validateRegisterForm2();
-                      if (validated) {
-                        authProvider.registerOTPController.clear();
-                        authProvider
-                            .sendVerifyOTPForRegistration()
-                            .then((done) {
-                          if (done) {
-                            authProvider.updateCurrentRegForm(2);
-                            startTimer();
-                          }
-                        });
-                      }
-                    } else if (authListener.currentRegForm == 2) {
-                      bool validated = authProvider.validateRegisterOTP();
-                      if (validated) {
-                        authProvider.registerUser().then((registered) {
-                          if (registered) {
-                            AlertDialogs.showSuccess(
-                                'Account Created Successfully');
-                            authProvider.clearValues();
-                            // DependencyRegistrar.initializeAllProviders(context);
+                  onTap: authListener.registerOTPLoading
+                      ? null
+                      : () async {
+                          bool validated = false;
+                          if (authListener.currentRegForm == 0) {
+                            validated = authProvider.validateRegisterForm1();
+                            if (validated) {
+                              authProvider.updateCurrentRegForm(1);
+                            }
+                          } else if (authListener.currentRegForm == 1) {
+                            validated = authProvider.validateRegisterForm2();
+                            if (validated) {
+                              authProvider.registerOTPController.clear();
+                              authProvider
+                                  .sendVerifyOTPForRegistration()
+                                  .then((done) {
+                                if (done) {
+                                  authProvider.updateCurrentRegForm(2);
+                                  startTimer();
+                                }
+                              });
+                            }
+                          } else if (authListener.currentRegForm == 2) {
+                            bool validated = authProvider.validateRegisterOTP();
+                            if (validated) {
+                              authProvider.registerUser().then((registered) {
+                                if (registered) {
+                                  AlertDialogs.showSuccess(
+                                      'Account Created Successfully');
+                                  authProvider.clearValues();
+                                  // DependencyRegistrar.initializeAllProviders(context);
 
-                            Future.delayed(const Duration(seconds: 1), () {
-                              authProvider.updateCurrentRegForm(3);
-                            });
-                          } else {
-                            AlertDialogs.showError(
-                                'Registration failed. Please try again.');
+                                  Future.delayed(const Duration(seconds: 1),
+                                      () {
+                                    authProvider.updateCurrentRegForm(3);
+                                  });
+                                } else {
+                                  AlertDialogs.showError(
+                                      'Registration failed. Please try again.');
+                                }
+                              }).catchError((error) {
+                                AlertDialogs.showError(
+                                    'An error occurred: $error');
+                              });
+                            } else {
+                              AlertDialogs.showError('Invalid OTP');
+                            }
+                          } else if (authListener.currentRegForm == 3) {
+                            authProvider.updateCurrentRegForm(0);
+                            authProvider
+                                .onChangeSelectedAuthView(AuthView.login);
                           }
-                        }).catchError((error) {
-                          AlertDialogs.showError('An error occurred: $error');
-                        });
-                      } else {
-                        AlertDialogs.showError('Invalid OTP');
-                      }
-                    } else if (authListener.currentRegForm == 3) {
-                      authProvider.updateCurrentRegForm(0);
-                      authProvider.onChangeSelectedAuthView(AuthView.login);
-                    }
-                  },
+                        },
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -779,33 +786,36 @@ class _LoginScreenState extends State<LoginScreen> {
               verticalSpaceSmall,
 
               InkWell(
-                onTap: () async {
-                  if (authListener.currentForgotForm == 0) {
-                    final isValidated = await authProvider.resetPassword();
-                    if (isValidated) {
-                      authProvider.resetFormKey.currentState?.save();
-                      AlertDialogs.showSuccess('Otp Sent Successfully!');
-                      startTimer();
-                      authProvider.updateCurrentForgotForm(1);
-                    } else {
-                      log('INVALIDATED', name: 'isValidated');
-                    }
-                  } else if (authListener.currentForgotForm == 1) {
-                    final isValidated =
-                        await authProvider.validateResetPasswordOTP();
-                    if (isValidated) {
-                      AlertDialogs.showSuccess(
-                          "Password Changed successfully!");
-                      authProvider.updateCurrentForgotForm(2);
-                      return;
-                    } else {
-                      log('INVALIDATED', name: 'isValidated');
-                    }
-                  } else if (authListener.currentForgotForm == 2) {
-                    authProvider.onChangeSelectedAuthView(AuthView.login);
-                    authProvider.updateCurrentForgotForm(0);
-                  }
-                },
+                onTap: authListener.resetLoading
+                    ? null
+                    : () async {
+                        if (authListener.currentForgotForm == 0) {
+                          final isValidated =
+                              await authProvider.resetPassword();
+                          if (isValidated) {
+                            authProvider.resetFormKey.currentState?.save();
+                            AlertDialogs.showSuccess('Otp Sent Successfully!');
+                            startTimer();
+                            authProvider.updateCurrentForgotForm(1);
+                          } else {
+                            log('INVALIDATED', name: 'isValidated');
+                          }
+                        } else if (authListener.currentForgotForm == 1) {
+                          final isValidated =
+                              await authProvider.validateResetPasswordOTP();
+                          if (isValidated) {
+                            AlertDialogs.showSuccess(
+                                "Password Changed successfully!");
+                            authProvider.updateCurrentForgotForm(2);
+                            return;
+                          } else {
+                            log('INVALIDATED', name: 'isValidated');
+                          }
+                        } else if (authListener.currentForgotForm == 2) {
+                          authProvider.onChangeSelectedAuthView(AuthView.login);
+                          authProvider.updateCurrentForgotForm(0);
+                        }
+                      },
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),

@@ -376,53 +376,56 @@ class _CartScreenState extends State<CartScreen>
                         ),
                         Expanded(
                           child: InkWell(
-                            onTap: () async {
-                              if (cartProvider.selectedPaymentMethod ==
-                                  PaymentMethod.card) {
-                                paymentProvider.createPaymentIntent(
-                                    cartProvider.calculatedDiscount,
-                                    cartProvider.calculatedDeliveryFee,
-                                    onPaymentSuccess: (transactionId) {
-                                  cartProvider
-                                      .createOrder(
-                                          tID: transactionId,
-                                          deliveryDate: shopListener
-                                              .formattedSelectedDate,
-                                          deliverySlot:
-                                              "${shopListener.selectedDeliverySlot?.openingTime}--${shopListener.selectedDeliverySlot?.closingTime}")
-                                      .then((created) {
-                                    if (created) {
-                                      Future.delayed(const Duration(seconds: 2),
-                                          () {
-                                        cartProvider.resetValues();
+                            onTap: cartListener.createOrderPending
+                                ? null
+                                : () async {
+                                    if (cartProvider.selectedPaymentMethod ==
+                                        PaymentMethod.card) {
+                                      paymentProvider.createPaymentIntent(
+                                          cartProvider.calculatedDiscount,
+                                          cartProvider.calculatedDeliveryFee,
+                                          onPaymentSuccess: (transactionId) {
+                                        cartProvider
+                                            .createOrder(
+                                                tID: transactionId,
+                                                deliveryDate: shopListener
+                                                    .formattedSelectedDate,
+                                                deliverySlot:
+                                                    "${shopListener.selectedDeliverySlot?.openingTime}--${shopListener.selectedDeliverySlot?.closingTime}")
+                                            .then((created) {
+                                          if (created) {
+                                            Future.delayed(
+                                                const Duration(seconds: 2), () {
+                                              cartProvider.resetValues();
 
+                                              context.replaceRoute(
+                                                  const SuccessScreenRoute());
+                                            });
+                                          }
+                                        });
+                                      });
+                                      return;
+                                    }
+
+                                    cartProvider
+                                        .createOrder(
+                                            deliveryDate: shopListener
+                                                .formattedSelectedDateForPayload,
+                                            deliverySlot:
+                                                "${shopListener.selectedDeliverySlot?.openingTime}--${shopListener.selectedDeliverySlot?.closingTime}")
+                                        .then((created) {
+                                      if (created) {
                                         context.replaceRoute(
                                             const SuccessScreenRoute());
-                                      });
-                                    }
-                                  });
-                                });
-                                return;
-                              }
-
-                              cartProvider
-                                  .createOrder(
-                                      deliveryDate: shopListener
-                                          .formattedSelectedDateForPayload,
-                                      deliverySlot:
-                                          "${shopListener.selectedDeliverySlot?.openingTime}--${shopListener.selectedDeliverySlot?.closingTime}")
-                                  .then((created) {
-                                if (created) {
-                                  context
-                                      .replaceRoute(const SuccessScreenRoute());
-                                  cartProvider.resetValues();
-                                  // orderProvider.fetchAllOrders();
-                                  cartProvider.clearSelectedAddressSecondary();
-                                  cartProvider.clearSelectedAddress();
-                                }
-                              });
-                              await orderProvider.fetchAllOrders();
-                            },
+                                        cartProvider.resetValues();
+                                        // orderProvider.fetchAllOrders();
+                                        cartProvider
+                                            .clearSelectedAddressSecondary();
+                                        cartProvider.clearSelectedAddress();
+                                      }
+                                    });
+                                    await orderProvider.fetchAllOrders();
+                                  },
                             child: Container(
                               height: 40,
                               decoration: BoxDecoration(
