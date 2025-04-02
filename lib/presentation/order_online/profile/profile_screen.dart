@@ -15,7 +15,6 @@ import 'package:bamboo_basket_customer_app/gen/assets.gen.dart';
 import 'package:bamboo_basket_customer_app/presentation/widgets/bottom_sheet_drag_handler.dart';
 import 'package:bamboo_basket_customer_app/presentation/widgets/get_provider_view.dart';
 import 'package:provider/provider.dart';
-import 'package:random_avatar/random_avatar.dart';
 
 import '../../../application/auth/auth_provider.dart';
 import '../../../core/utils/date_utils.dart';
@@ -670,15 +669,7 @@ class ProfileScreen extends GetProviderView<UserProvider> {
     ]);
   }
 
-  String _getAvatarForUser(String userId) {
-    // Logic to determine avatar based on user ID
-    // For simplicity, we return the same svgString for now
-    // You can replace this with actual logic to fetch or generate avatars
-    return RandomAvatarString(
-      userId,
-      trBackground: true,
-    );
-  }
+
 
   Widget buildFooterDetails(OrderDetailsModel order, BuildContext context) {
     return Row(

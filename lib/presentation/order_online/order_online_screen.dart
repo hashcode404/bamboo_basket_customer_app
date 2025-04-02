@@ -14,7 +14,7 @@ import 'package:bamboo_basket_customer_app/presentation/order_online/orders/orde
 import 'package:bamboo_basket_customer_app/presentation/order_online/profile/profile_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+
 
 import '../../application/cart/cart_provider.dart';
 import '../../core/theme/app_colors.dart';
