@@ -199,7 +199,11 @@ class AuthProvider extends ChangeNotifier with BaseController {
           //   await FirebaseMessaging.instance.subscribeToTopic("${AppIdentifiers.kFCMTopicID}$userID");
           // }
 
-          return await sharedPrefsRepository.saveUserData(userData);
+          final isSaved = await sharedPrefsRepository.saveUserData(userData);
+
+          await Future.delayed(const Duration(milliseconds: 800));
+
+          return isSaved;
         },
       );
     } finally {

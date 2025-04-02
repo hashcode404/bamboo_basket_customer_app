@@ -223,7 +223,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (logged) {
                           AlertDialogs.showSuccess("Login successfully!");
                           homeProvider.onChangeCurrentPage(0);
-                          DependencyRegistrar.initializeAllProviders(context);
+                          
+                           DependencyRegistrar.initializeAllProviders(
+                              context);
                           await Future.delayed(const Duration(seconds: 1), () {
                             // ignore: use_build_context_synchronously
                             context.router.replaceAll([
