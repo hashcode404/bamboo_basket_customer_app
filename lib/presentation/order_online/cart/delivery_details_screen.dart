@@ -1057,17 +1057,20 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                           visible: userListener.userAddressList.isNotEmpty,
                           child: Expanded(
                             child: FilledButton(
-                              onPressed: () {
-                                context
-                                    .read<CartProvider>()
-                                    .validateAddress()
-                                    .then((validated) {
-                                  if (validated) {
-                                    // ignore: use_build_context_synchronously
-                                    Navigator.pop(context);
-                                  }
-                                });
-                              },
+                              onPressed: cartListener
+                                      .deliveryOrTakeAwayChargeCalculating
+                                  ? null
+                                  : () {
+                                      context
+                                          .read<CartProvider>()
+                                          .validateAddress()
+                                          .then((validated) {
+                                        if (validated) {
+                                          // ignore: use_build_context_synchronously
+                                          Navigator.pop(context);
+                                        }
+                                      });
+                                    },
                               child: cartListener
                                       .deliveryOrTakeAwayChargeCalculating
                                   ? showButtonProgress()
