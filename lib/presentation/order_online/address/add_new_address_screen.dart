@@ -9,6 +9,7 @@ import 'package:bamboo_basket_customer_app/core/theme/custom_text_styles.dart';
 import 'package:bamboo_basket_customer_app/domain/user/models/user_address_list_data_model.dart';
 import 'package:bamboo_basket_customer_app/presentation/widgets/button_progress.dart';
 import 'package:bamboo_basket_customer_app/presentation/widgets/get_provider_view.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/utils/ui_utils.dart';
@@ -28,44 +29,38 @@ class AddNewAddressScreen extends GetProviderView<UserProvider> {
 
     return Form(
       key: userProvider.newAddressFormKey,
-      child: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            address != null ? "Edit Address" : "Add Address",
-            style: context.customTextTheme.text24W600,
+      child: Theme(
+        data: Theme.of(context).copyWith(
+          textTheme: GoogleFonts.quicksandTextTheme(),
+        ),
+        child: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              address != null ? "Edit Address" : "Add Address",
+              style: context.customTextTheme.text20W600,
+            ),
+            leading: InkWell(
+              onTap: () {
+                userListener.searchAddressTxtController.clear();
+                Navigator.pop(context);
+              },
+              child: CustomBackButton(),
+            ),
+            leadingWidth: 70,
           ),
-          leading: InkWell(
-            onTap: () {
-              userListener.searchAddressTxtController.clear();
-              Navigator.pop(context);
-            },
-            child: Container(
-              padding: const EdgeInsets.all(8),
-              margin: const EdgeInsets.only(left: 10),
-              decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.kGray2),
-                  color: AppColors.kWhite,
-                  shape: BoxShape.circle),
-              child: const Icon(
-                Icons.arrow_back_ios_new_rounded,
-                size: 18,
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(15.0).copyWith(bottom: 110),
+              child: SingleChildScrollView(
+                child: _buildAddressForm(context, userProvider, address),
               ),
             ),
           ),
-          leadingWidth: 60,
+          bottomSheet: MediaQuery.of(context).viewInsets.bottom == 0.0
+              ? buildConfirmButton(context, userProvider)
+              : null,
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(15.0).copyWith(bottom: 110),
-            child: SingleChildScrollView(
-              child: _buildAddressForm(context, userProvider, address),
-            ),
-          ),
-        ),
-        bottomSheet: MediaQuery.of(context).viewInsets.bottom == 0.0
-            ? buildConfirmButton(context, userProvider)
-            : null,
       ),
     );
   }

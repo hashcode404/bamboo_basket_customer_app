@@ -25,15 +25,15 @@ void main() async {
   configureInjection();
 
   // FirebaseMessaging.instance.getToken().then((token) => log(token.toString(), name: "FCM_TKN"));
-  if (Platform.isIOS) {
-    FirebaseMessaging.instance
-        .getAPNSToken()
-        .then((token) => log(token.toString(), name: "FCM_TKN"));
-  } else if (Platform.isAndroid) {
-    FirebaseMessaging.instance
-        .getToken()
-        .then((token) => log(token.toString(), name: "FCM_TKN"));
-  }
+  // if (Platform.isIOS) {
+  //   FirebaseMessaging.instance
+  //       .getAPNSToken()
+  //       .then((token) => log(token.toString(), name: "FCM_TKN"));
+  // } else if (Platform.isAndroid) {
+  //   FirebaseMessaging.instance
+  //       .getToken()
+  //       .then((token) => log(token.toString(), name: "FCM_TKN"));
+  // }
   // FirebaseMessaging.onMessage.listen((message) {
   //   if (message.data["title"] != null || message.data["body"] != null) {
   //     NotificationProvider().showNotification(
